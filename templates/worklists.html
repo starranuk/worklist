@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=`, initial-scale=1.0">
+    <title>Worklists Manager</title>
+</head>
+<body>
+    {% for job_request in worklists %}
+        {{ job_request.job_type_name }}<br>
+        {{ job_request.job_request_name }}<br>
+        {{ job_request.job_description }}<br>
+        {{ job_request.urgent }}<br>
+        {{ job_request.job_due_date }}<br>
+    {% endfor %}
+</body>
+</html>
