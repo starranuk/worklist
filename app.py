@@ -18,13 +18,13 @@ mongo = PyMongo(app)
 
 
 @app.route("/")
-@app.route("/get_worklists")
-def get_worklists():
-    worklists = mongo.db.worklists.find()
-    return render_template("worklists.html", worklists=worklists)
+@app.route("/get_jobs")
+def get_jobs():
+    jobs = mongo.db.jobs.find()
+    return render_template("jobs.html", jobs=jobs)
 
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
-            debug=True)
+            debug=True)    
