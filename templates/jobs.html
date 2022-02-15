@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Worklist</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Jobs Worklist</h2> 
     {% for job in jobs %}
         {{ job.job_type_name }}<br>
         {{ job.job_name }}<br>
@@ -13,5 +9,5 @@
         {{ job.job_priority }}<br>
         {{ job.job_due_date }}<br>
     {% endfor %}
-</body>
-</html>
+
+{% endblock %}
