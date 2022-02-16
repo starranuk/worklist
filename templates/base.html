@@ -4,13 +4,35 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" 
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" type="text/css"/>
+     <!-- Materialize via CDN -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css">
+     <!-- Link to static style.css file -->
+     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
+     <!-- Custom CSS injection -->
+     {% block styles %}
+     {% endblock %}
     <title>Jobs Worklist</title>
 </head>
 <body>
-    <h1>Base Template</h1>
+    
     
     {% block content %}
     {% endblock %}
     
+
+    <script
+    <!-- Compiled and minified JQuery -->
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"></script>    
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- Link to static Javascript script.js file -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script> 
+    <!-- Custom CSS injection -->
+    {% block scripts %}
+    {% endblock %}      
 </body>
 </html>
