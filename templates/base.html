@@ -21,11 +21,11 @@
         <nav>
            <!-- Top Navigation bar -->
             <div class="nav-wrapper #4a148c purple darken-4">
-              <a href="#!" class="brand-logo">
+              <a href="{{ url_for('get_jobs') }}" class="brand-logo">
                 <img src="./static/images/pls_logo.png" alt="Principle Lifting and Safety"</a>
-              <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+              <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
               <ul class="right hide-on-med-and-down">
-                <li><a href="#">Home</a></li>
+                <li><a href="{{ url_for('get_jobs') }}">Home</a></li>
                 <li><a href="#">Profile</a></li>
                 <li><a href="#">New Job</a></li>
                 <li><a href="#">Manage Job Categories</a></li>
@@ -37,7 +37,8 @@
           </nav>
           <!-- Side Navigation bar -->
           <ul class="sidenav" id="mobile-demo">
-            <li><a href="#">Home</a></li>
+            <li class="center-align light-blue-text text-darken 4">Task Manager</h4></li>
+            <li><a href="{{ url_for('get_jobs') }}">Home</a></li>
                 <li><a href="#">Profile</a></li>
                 <li><a href="#">New Job</a></li>
                 <li><a href="#">Manage Job Categories</a></li>
@@ -53,7 +54,7 @@
     
 
     <script
-    <!-- Compiled and minified JQuery -->
+    
     src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
     crossorigin="anonymous"></script>    
