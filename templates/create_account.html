@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h3 class="center-align">Create Staff User Account</h3>
+
+    <div class="row">
+        <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('create_account') }}">
+        <div class="card-panel teal">
+            <!-- Staff Username-->
+            <div class="row">
+                <div class="input-field col s3">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input id="username" name="username" type="text" class="validate">
+                    <label for="username">Username</label>
+                </div>
+            </div>
+            <!-- Password-->
+            <div class="row">
+                <div class="input-field col s3">
+                    <i class="material-icons prefix">security</i>
+                    <input id="password" name="password" type="password" class="validate">
+                    <label for="password">Password</label>
+                </div>
+            </div>
+            <!-- Create Account Button-->
+            <div class="row">
+                <a class="waves-effect waves-light btn-large"><i class="material-icons left">create</i>Create Account</a>
+            </div>
+        </div>
+        </form>
+    </div
+
+{% endblock %}
