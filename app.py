@@ -53,7 +53,7 @@ def create_account():
 # User Login
 @app.route("/login", methods=["GET", "POST"])
 def login():
-     if request.method == "POST":
+    if request.method == "POST":
         # Check to see if user already exists in MongoDB
         existing_user = mongo.db.staff.find_one(
             {"username": request.form.get("username").lower()})
@@ -63,20 +63,31 @@ def login():
             if check_password_hash(
                 existing_user["password"], request.form.get("password")):
                     session["staff"] = request.form.get("username").lower()
-                    flash("Welcome to the PLS Worklist System, {}".format(request.form.get("username")))
+                    flash("Welcome to the PLS Worklist System, {}".format(
+                        request.form.get("username")))
+                    return redirect(url_for(
+                        "profile", username=session["user"]))
             else:
                 # Invalid password
                 flash("Username and/or Password are Incorrect!")
                 return redirect(url_for("login"))
 
-    else:
-        # Username doesn't exist
-        flash("Username and/or Password are Incorrect!")
-        return redirect(url_for("login"))
-
+        else:
+            # Username doesn't exist
+            flash("Username and/or Password are Incorrect!")
+            return redirect(url_for("login"))
 
     return render_template("login.html")    
 
+
+# User Profile
+@app.route("/profile/<username>", methods=["GET", "POST"])
+def profile(username):
+    # Retrieve the session users ursername from MongoDB
+    username = mongo.db.staff.find_one(
+        {"username": session["user"]})["username"]
+    retuen render_template("profile.html", username=username)
+    
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
