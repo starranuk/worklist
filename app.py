@@ -62,7 +62,7 @@ def login():
             # Check password matches the one stored in MongoDB
             if check_password_hash(
                 existing_user["password"], request.form.get("password")):
-                    session["staff"] = request.form.get("username").lower()
+                    session["user"] = request.form.get("username").lower()
                     flash("Welcome to the PLS Worklist System, {}".format(
                         request.form.get("username")))
                     return redirect(url_for(
@@ -86,10 +86,22 @@ def profile(username):
     # Retrieve the session users ursername from MongoDB
     username = mongo.db.staff.find_one(
         {"username": session["user"]})["username"]
-    retuen render_template("profile.html", username=username)
+
+    if session["user"]:
+        return render_template("profile.html", username=username)
+
+    return redirect(url_for("login"))
+
+
+@app.route("/logout")
+def logout():
+    # Remove session cookie from user
+    flash("You have logged out")
+    session.pop("user")
+    return redirect(url_for("login"))
     
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
-            debug=True)    
+            debug=True)  
