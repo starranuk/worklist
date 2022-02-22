@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h3 class="center-align">Login</h3>
+
+    <div class="row">
+        <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('login') }}">
+        <div class="card-panel teal">
+            <!-- Staff Username-->
+            <div class="row">
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">account_box</i>
+                    <input id="username" name="username" type="text" minlength="6" 
+                    maxlength="12" pattern="^[a-zA-Z0-9]{6,12}$" class="validate" required>
+                    <label for="username">Username</label>
+                </div>
+            </div>
+            <!-- Password-->
+            <div class="row">
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">security</i>
+                    <input id="password" name="password" type="password" minlength="6" 
+                    maxlength="12" pattern="^[a-zA-Z0-9-!_@]{6,12}$" class="validate" required>>
+                    <label for="password">Password</label>
+                </div>
+            </div>
+            <!-- Account Login Button-->
+            <div class="row">
+                <button type="submit" class="waves-effect waves-light btn-large">
+                    <i class="material-icons left">create</i>Login</button>
+            </div>
+        </div>
+        </form>
+    </div
+
+{% endblock %}
