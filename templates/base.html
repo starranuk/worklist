@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" 
-        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" type="text/css"/>
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" type="text/css"/>
      <!-- Materialize via CDN -->
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css">
      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -37,16 +37,16 @@
             </div>
           </nav>
           <!-- Side Navigation bar -->
-          <ul class="sidenav" id="mobile-demo">
+                <ul class="sidenav" id="mobile-demo">
             <li class="center-align light-blue-text text-darken 4">Task Manager</h4></li>
             <li><a href="{{ url_for('get_jobs') }}">Home</a></li>
-                <li><a href="#">Profile</a></li>
-                <li><a href="#">New Job</a></li>
-                <li><a href="#">Manage Job Categories</a></li>
-                <li><a href="#">Log Out</a></li>
-                <li><a href="#">Log In</a></li>
-                <li><a href="{{ url_for('create_account') }}">Create Staff Account</a></li>
-          </ul>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">New Job</a></li>
+            <li><a href="#">Manage Job Categories</a></li>
+            <li><a href="#">Log Out</a></li>
+            <li><a href="#">Log In</a></li>
+            <li><a href="{{ url_for('create_account') }}">Create Staff Account</a></li>
+                </ul>
 
     </header>
     
@@ -54,9 +54,7 @@
     {% endblock %}
     
 
-    <script
-    
-    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
     crossorigin="anonymous"></script>    
     <!-- Compiled and minified JavaScript -->

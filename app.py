@@ -24,9 +24,29 @@ def get_jobs():
     jobs = mongo.db.jobs.find()
     return render_template("jobs.html", jobs=jobs)
 
-#User registration
+# User registration
 @app.route("/create_account", methods=["GET", "POST"])
 def create_account():
+    if request.method == "POST":
+        # Check to see if user already exists in MongoDB
+        existing_user = mongo.db.staff.find_one(
+            {"username": request.form.get("username").lower()})
+
+        if existing_user:
+            flash("This staff member already exists")
+        # Redirects back to the same create account page
+            return redirect(url_for('create_account'))
+
+        create_account = {
+            "username": request.form.get("username").lower(),
+            "password": generate_password_hash(request.form.get("password")),
+            "role": request.form.get("role").lower()
+        }
+        mongo.db.staff.insert_one(create_account)
+
+        # Add new staff account into session cookie
+        session["staff"] = request.form.get("username").lower()
+        flash("Staff members registration succesful")
     return render_template("create_account.html")
 
 
