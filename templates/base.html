@@ -32,9 +32,9 @@
                   <li><a href="#">New Job</a></li>
                   <li><a href="#">Manage Job Categories</a></li>
                   <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+                  <li><a href="{{ url_for('create_account') }}">Create Staff Account</a></li>
                 {% else %}
                   <li><a href="{{ url_for('login') }}">Login</a></li>
-                  <li><a href="{{ url_for('create_account') }}">Create Staff Account</a></li>
                 {% endif %}
               </ul>
             </div>
@@ -48,10 +48,10 @@
                   <li><a href="#">New Job</a></li>
                   <li><a href="#">Manage Job Categories</a></li>
                   <li><a href="{{ url_for('logout') }}">Log Out</a></li>
-                {% else %}
-                  <li><a href="{{ url_for('login') }}">Login</a></li>
                   <li><a href="{{ url_for('create_account') }}">Create Staff Account</a></li>
-                {% endif %}
+                  {% else %}
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                  {% endif %}
           </ul>
 
     </header>
