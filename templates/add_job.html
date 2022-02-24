@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3 class="center-align">Add New Job</h3>
+
+<div class="row">
+    <form class="col s12" method="POST" action="">
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">account_circle</i>
+          <input id="job_name" name="job_name" minlength="5" maxlength="50" type="text" class="validate" required>
+          <label for="job_name">Job Name</label>
+        </div>
+      </div>
+    <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">description</i>
+          <textarea id="job_description" name="job_description" minlength="5" maxlength="200" class="materialize-textarea"></textarea>
+          <label for="job_description">Job Description</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">date_range</i>
+          <input id="job_due_date" name="job_due_date" type="text" class="datepicker validate" required>
+          <label for="job_due_date">Job Due Date</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <!-- Switch -->
+          <div class="switch">
+            <i class="material-icons prefix">info_outline</i>       
+            <label for="job_priority">
+                <input type="checkbox" id="job_priority" name="job_priority">
+                <span class="lever"></span>
+              Yes
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+{% endblock %}

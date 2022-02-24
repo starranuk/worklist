@@ -99,6 +99,11 @@ def logout():
     flash("You have logged out")
     session.pop("user")
     return redirect(url_for("login"))
+
+
+@app.route("/add_job")
+def add_job():
+    return render_template("add_job.html")
     
 
 if __name__ == "__main__":
