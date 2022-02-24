@@ -21,7 +21,7 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/get_jobs")
 def get_jobs():
-    jobs = mongo.db.jobs.find()
+    jobs = list(mongo.db.jobs.find())
     return render_template("jobs.html", jobs=jobs)
 
 # User registration

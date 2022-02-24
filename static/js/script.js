@@ -17,4 +17,5 @@ document.addEventListener('DOMContentLoaded', function () {
 */
  $(document).ready(function(){
     $('.collapsible').collapsible();
+    $('.tooltipped').tooltip();
   });

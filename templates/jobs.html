@@ -1,22 +1,23 @@
 {% extends "base.html" %}
 {% block content %}
 
-
-    {% for job in jobs %}
-        {{ job.job_type_name }}<br>
-        {{ job.job_name }}<br>
-        {{ job.job_description }}<br>
-        {{ job.job_priority }}<br>
-        {{ job.job_due_date }}<br>
-    {% endfor %}
-
     <ul class="collapsible">
+        {% for job in jobs %}
         <li>
             <div class="collapsible-header">
-                <i class="material-icons">view_day</i>First</div>
+                <i class="material-icons">view_day</i>
+                <strong>{{ job.job_name }}</strong> - Due Date: {{ job.job_due_date }}
+                {% if job.job_priority == "on" %}
+                    <i class="material-icons tooltipped"
+                    data-position="right" data-tooltip="URGENT!">whatshot</i>
+                {% endif %}
+            </div>
             <div class="collapsible-body">
-                <span>Lorem ipsum dolor sit amet.</span></div>
+                <strong>{{ job.job_type_name }}</strong>
+                <p>{{ job.job_description }}.</p>
+            </div>
         </li>
+        {% endfor %}
       </ul>    
 
 {% endblock %}
