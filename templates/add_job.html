@@ -3,8 +3,20 @@
 
 <h3 class="center-align">Add New Job</h3>
 
-<div class="row">
+<div class="row card-panel purple lighten-5">
     <form class="col s12" method="POST" action="">
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">dvr</i>
+          <select id="job_type_name" name="job_type_name class="validate" required>
+            <option value="" disabled selected>Select Job Type</option>
+            {% for job_type in job_type %}
+              <option value="{{job_type.job_type_name}}">{{job_type.job_type_name}}</option>
+            {% endfor %}
+          </select>
+          <label for="job_type_name">Job Type</label>
+        </div>
+      </div>
       <div class="row">
         <div class="input-field col s12">
           <i class="material-icons prefix">account_circle</i>
