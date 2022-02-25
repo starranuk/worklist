@@ -14,7 +14,8 @@
             </div>
             <div class="collapsible-body">
                 <strong>{{ job.job_type_name }}</strong>
-                <p>{{ job.job_description }}.</p>
+                <p>{{ job.job_description }}</p>
+                <p><em>by: {{ task.created_by }}</em></p>
             </div>
         </li>
         {% endfor %}
