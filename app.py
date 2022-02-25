@@ -111,7 +111,7 @@ def add_job():
             "job_description": request.form.get("job_description"),
             "job_priority": job_priority,
             "job_due_date": request.form.get("job_due_date"),
-            "created_by": session("username"),
+            "created_by": session["user"]
         }
         mongo.db.jobs.insert_one(job)
         flash("New Job Added to System")
