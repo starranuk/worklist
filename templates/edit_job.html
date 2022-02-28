@@ -10,20 +10,25 @@
                               <div class="input-field col s12">
           <i class="material-icons prefix">dvr</i>
                                       <select id="job_type_name" name="job_type_name" class="validate" required>
-            <option value="" disabled selected>Select Job Type</option>
+            <option value="" disabled >Select Job Type</option>
             {% for job_category in job_type %}
+                {% if job_category.job_type_name == job.job_type_name %}
+                  <option value="{{job_category.job_type_name}}" selected>{{job_category.job_type_name}}</option>
+                {% else %}
               <option value="{{job_category.job_type_name}}">{{job_category.job_type_name}}</option>
+              {% endif %}
             {% endfor %}
           </select>
                             <label for="job_type_name">Job Type</label>
-                  </div>
-            </div>
+                              </div>
+                      </div>
 
       <!-- Job Name -->
       <div class="row">
         <div class="input-field col s12">
           <i class="material-icons prefix">account_circle</i>
-          <input id="job_name" name="job_name" minlength="5" maxlength="50" type="text" class="validate" required>
+          <input id="job_name" name="job_name" minlength="5" maxlength="50"
+          value="{{ job.job_name }}" type="text" class="validate" required>
           <label for="job_name">Job Name</label>
         </div>
       </div>
@@ -32,7 +37,8 @@
     <div class="row">
         <div class="input-field col s12">
           <i class="material-icons prefix">description</i>
-          <textarea id="job_description" name="job_description" minlength="5" maxlength="200" class="materialize-textarea"></textarea>
+          <textarea id="job_description" name="job_description" minlength="5" maxlength="200" class="materialize-textarea validate" required>
+            {{- job.job_description -}}</textarea>
           <label for="job_description">Job Description</label>
         </div>
       </div>
@@ -40,7 +46,7 @@
       <div class="row">
         <div class="input-field col s12">
           <i class="material-icons prefix">date_range</i>
-          <input id="job_due_date" name="job_due_date" type="text" class="datepicker validate" required>
+          <input id="job_due_date" name="job_due_date" type="text" value="{{ job.job_due_date }}" class="datepicker validate" required>
           <label for="job_due_date">Job Due Date</label>
         </div>
       </div>
@@ -50,7 +56,11 @@
           <div class="switch">
             <i class="material-icons prefix">info_outline</i>       
             <label for="job_priority">
-                <input type="checkbox" id="job_priority" name="job_priority">
+                {% if job.job_priority %}
+                    <input type="checkbox" id="job_priority" name="job_priority" checked>
+                {% else %}
+                    <input type="checkbox" id="job_priority" name="job_priority">
+                {% endif %}
                 <span class="lever"></span>
               Yes
             </label>
@@ -61,8 +71,12 @@
     <!-- Create Job Button -->
     <div class="row">
       <div class="col s12 center-align">
+        <!-- Cancel Changes Button -->
+        <a href="{{ url_for('get_jobs') }}" class="btn-large red">
+            Cancel <i class="fas.fa-times-circle.right"></i>
+        </a>
         <button type="submit" class="waves-effect waves-light btn-large">
-          <i class="material-icons left">send</i>Create Job</button>
+          <i class="material-icons left">edit</i>Edit Job</button>
       </div>
     </div>
   </form>

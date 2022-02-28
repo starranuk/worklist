@@ -24,6 +24,7 @@ def get_jobs():
     jobs = list(mongo.db.jobs.find())
     return render_template("jobs.html", jobs=jobs)
 
+
 # User registration
 @app.route("/create_account", methods=["GET", "POST"])
 def create_account():
@@ -62,10 +63,10 @@ def login():
             # Check password matches the one stored in MongoDB
             if check_password_hash(
                 existing_user["password"], request.form.get("password")):
-                    session["user"] = request.form.get("username").lower()
-                    flash("Welcome to the PLS Worklist System, {}".format(
+                session["user"] = request.form.get("username").lower()
+                flash("Welcome to the PLS Worklist System, {}".format(
                         request.form.get("username")))
-                    return redirect(url_for(
+                return redirect(url_for(
                         "profile", username=session["user"]))
             else:
                 # Invalid password
@@ -121,11 +122,11 @@ def add_job():
     return render_template("add_job.html", job_type=job_type )
 
 
-@app.route("/edit_job", methods=["GET", "POST"])
+@app.route("/edit_job/<job_id>", methods=["GET", "POST"])
 def edit_job(job_id):
     job = mongo.db.jobs.find_one({"_id": ObjectId(job_id)})
     job_type = mongo.db.job_type.find().sort("job_type_name", 1)
-    return render_template("edit_job.html", job=job, job_type=job_type )
+    return render_template("edit_job.html", job=job, job_type=job_type)
 
 
 if __name__ == "__main__":
