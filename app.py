@@ -119,7 +119,14 @@ def add_job():
 
     job_type = mongo.db.job_type.find().sort("job_type_name", 1)
     return render_template("add_job.html", job_type=job_type )
-    
+
+
+@app.route("/edit_job", methods=["GET", "POST"])
+def edit_job(job_id):
+    job = mongo.db.jobs.find_one({"_id": ObjectId(job_id)})
+    job_type = mongo.db.job_type.find().sort("job_type_name", 1)
+    return render_template("edit_job.html", job=job, job_type=job_type )
+
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),

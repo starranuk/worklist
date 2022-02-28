@@ -10,3 +10,7 @@ body {
 .flash_message {
 	
 }
+
+.btn-small {
+	margin: 10px;
+}
