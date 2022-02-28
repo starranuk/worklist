@@ -17,6 +17,11 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 
+@app.route("/")
+@app.route("/home")
+def home():
+    jobs = list(mongo.db.jobs.find())
+    return render_template("index.html")
 
 @app.route("/")
 @app.route("/get_jobs")
@@ -124,6 +129,19 @@ def add_job():
 
 @app.route("/edit_job/<job_id>", methods=["GET", "POST"])
 def edit_job(job_id):
+    if request.method == "POST":
+        job_priority = "on" if request.form.get("job_priority") else "off"
+        job_edit = {
+            "job_type_name": request.form.get("job_type_name"),
+            "job_name": request.form.get("job_name"),
+            "job_description": request.form.get("job_description"),
+            "job_priority": job_priority,
+            "job_due_date": request.form.get("job_due_date"),
+            "created_by": session["user"]
+        }
+        mongo.db.jobs.replace_one({"_id": ObjectId(job_id)}, job_edit)
+        flash("Job Successfully Updated")
+
     job = mongo.db.jobs.find_one({"_id": ObjectId(job_id)})
     job_type = mongo.db.job_type.find().sort("job_type_name", 1)
     return render_template("edit_job.html", job=job, job_type=job_type)

@@ -22,9 +22,11 @@
         <nav>
            <!-- Top Navigation bar -->
             <div class="nav-wrapper #4a148c purple darken-4">
+              <a href="{{ url_for('get_jobs') }}" class="brand-logo"></a>
                 <img src="./static/images/pls_logo.png" alt="Principle Lifting and Safety"</a>
               <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
               <ul class="right hide-on-med-and-down">
+                  <li><a href="{{ url_for('home') }}">Home</a></li>
                 {% if session.user %}
                   <li><a href="{{ url_for('get_jobs') }}">Worklist</a></li>
                   <li><a href="{{ url_for('profile', username=session["user"]) }}">Profile</a></li>
