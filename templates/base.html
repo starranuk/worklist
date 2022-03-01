@@ -29,11 +29,15 @@
                   <li><a href="{{ url_for('home') }}">Home</a></li>
                 {% if session.user %}
                   <li><a href="{{ url_for('get_jobs') }}">Worklist</a></li>
-                  <li><a href="{{ url_for('profile', username=session["user"]) }}">Profile</a></li>
+                  <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
                   <li><a href="{{ url_for('add_job') }}">New Job</a></li>
-                  <li><a href="#">Manage Job Categories</a></li>
+                  {% if session.user|lower == "sysadmin"|lower %}
+                  <li><a href="{{ url_for('get_job_type') }}">Manage Job Types</a></li>
+                  {% endif %}
                   <li><a href="{{ url_for('logout') }}">Log Out</a></li>
-                  <li><a href="{{ url_for('create_account') }}">Create Staff Account</a></li>
+                    {% if session.user|lower == "sysadmin"|lower %}
+                    <li><a href="{{ url_for('create_account') }}">Create Staff Account</a></li>
+                    {% endif %}
                 {% else %}
                   <li><a href="{{ url_for('login') }}">Login</a></li>
                 {% endif %}
@@ -45,9 +49,11 @@
             <li class="center-align light-blue-text text-darken 4">Task Manager</h4></li>
             {% if session.user %}
                   <li><a href="{{ url_for('get_jobs') }}">Worklist</a></li>
-                  <li><a href="{{ url_for('profile', username=session["user"]) }}">Profile</a></li>
+                  <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
                   <li><a href="{{ url_for('add_job') }}">New Job</a></li>
-                  <li><a href="#">Manage Job Categories</a></li>
+                  {% if session.user|lower == "sysadmin"|lower %}
+                  <li><a href="{{ url_for('get_job_type') }}">Manage Job Types</a></li>
+                  {% endif %}
                   <li><a href="{{ url_for('logout') }}">Log Out</a></li>
                   <li><a href="{{ url_for('create_account') }}">Create Staff Account</a></li>
                   {% else %}
