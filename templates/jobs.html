@@ -9,8 +9,9 @@
         <div class="collapsible-header">
             <div class="col s4">
                 <i class="material-icons">view_day</i>
-                <a class="waves-effect waves-light btn-small">Job Complete</a>
-                <a href="{{ url_for('edit_job', job_id=job._id) }}" waves-effect waves-light btn-small">Edit Job</a>
+                {% if session.user|lower == job.created_by|lower %}
+                <a href="{{ url_for('edit_job', job_id=job._id) }}" <a class="btn-small"><i class="material-icons left"></i>Edit Job</a>
+                {% endif %}
             </div>
             <div class="col s9">
                 <strong>{{ job.job_name }}</strong> - Due Date: {{ job.job_due_date }}
