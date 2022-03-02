@@ -68,16 +68,19 @@
         </div>
       </div>
     </div>
-    <!-- Create Job Button -->
+    
     <div class="row">
       <div class="col s12 center-align">
-        <a href="{{ url_for('delete_job', job_id=job._id) }}" <a class="red btn-large"><i class="material-icons left"></i>Delete Job</a>
+        <!-- Delete Job Button only for sysadmin user-->
+        {% if session.user|lower == "sysadmin"|lower %}
+          <a href="{{ url_for('delete_job', job_id=job._id) }}" <a class="red btn-large"><i class="material-icons left"></i>Delete Job</a>
+        {% endif %}
         <!-- Cancel Changes Button -->
         <a href="{{ url_for('get_jobs') }}" class="btn-large red">
-            Cancel <i class="fas.fa-times-circle.right"></i>
+            Return to Worklist<i class="fas.fa-times-circle.right"></i>
         </a>
-        <button type="submit" class="waves-effect waves-light btn-">
-          <i class="material-icons left">edit</i>Edit Job</button>
+        <button type="submit" clasee="blue btn-large" class="waves-effect waves-light btn-">
+          <i class="material-icons left">edit</i>Save Changes</button>
       </div>
     </div>
   </form>
