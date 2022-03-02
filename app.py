@@ -159,6 +159,11 @@ def get_job_type():
     job_type = list(mongo.db.job_type.find().sort("job_type_name", 1))
     return render_template("job_type.html", job_type=job_type)
 
+
+@app.route("/add_job_type")
+def add_job_type():
+    return render_template("add_job_type.html")
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
