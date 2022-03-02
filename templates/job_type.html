@@ -4,10 +4,11 @@
     <h3 class="center-align">Manage Job Types</h3>
 
     <div class="row">
-      <div class="col s12 center-align"></div>
-      <a href="{{ url_for('add_job_type) }}" ></a><a class="btn-small"><i class="material-icons left"></i>Add New Job Type</a>
-    </div>
-
+      <div class="col s12 center-align">
+        <a href="{{ url_for('add_job_type') }}"  class="waves-effect waves-light btn-large">
+          <i class="material-icons left">send</i>Add Job Type</a>
+      </div>
+  </div>
     <div class="row"> 
         {% for job_types in job_type %}
       <div class="col s12 m3">
@@ -16,8 +17,7 @@
             <span class="card-title">{{ job_types.job_type_name }}</span>
           </div>
           <div class="card-action">
-            <a href="#" class="btn green accent-4">Edit</a>
-            <a href="#" class="btn light-blue lighten-1">Delete</a>
+            <a href="{{ url_for('delete_job_type', job_types_id=job_types._id) }}" class="btn light-blue lighten-1">Delete</a>
           </div>
         </div>
       </div>

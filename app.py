@@ -17,11 +17,13 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 
+
 @app.route("/")
 @app.route("/home")
 def home():
     jobs = list(mongo.db.jobs.find())
     return render_template("index.html")
+
 
 @app.route("/")
 @app.route("/get_jobs")
@@ -160,9 +162,25 @@ def get_job_type():
     return render_template("job_type.html", job_type=job_type)
 
 
-@app.route("/add_job_type")
+@app.route("/add_job_type", methods=["GET", "POST"])
 def add_job_type():
+    if request.method == "POST":
+        job_types = {
+            "job_type_name": request.form.get("job_type_name")
+        }
+        mongo.db.job_type.insert_one(job_types)
+        flash("New Job Type Added")
+        return redirect(url_for("get_job_type"))
+
     return render_template("add_job_type.html")
+
+
+@app.route("/delete_category/<job_types_id>")
+def delete_job_type(job_types_id):
+    mongo.db.job_type.delete_one({"_id": ObjectId(job_types_id)})
+    flash("Job Type Successfully Deleted")
+    return redirect(url_for("get_job_type"))
+
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),

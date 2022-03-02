@@ -14,14 +14,14 @@
                 {% endif %}
             </div>
             <div class="col s9">
-                <strong>{{ job.job_name }}</strong> - Due Date: {{ job.job_due_date }}
+                <strong>{{ job.job_type_name }}</strong> - Due Date: {{ job.job_due_date }}
                     {% if job.job_priority == "on" %}
                         <i class="material-icons tooltipped" data-position="right" data-tooltip="URGENT!">whatshot</i>
                     {% endif %}
             </div>
         </div>
         <div class="collapsible-body">
-            <strong>{{ job.job_type_name }}</strong>
+            <strong>{{ job.job_name }}</strong> 
             <p>{{ job.job_description }}</p>
             <p><em>by: {{ job.created_by }}</em></p>
         </div>
