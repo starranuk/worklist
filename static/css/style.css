@@ -27,10 +27,11 @@ strong {
 #main-image {
 	height: 600px;
 	width: 100%;
-	background: url("https://starranuk.github.io/worklist/static/images/van2.jpg") no-repeat center center;
+	background: url("/static/images/van2.jpg") no-repeat center center;
 	animation-name: hero-zoom;
 	animation-duration: 5s;
 	animation-fill-mode: forwards;
+	background-blend-mode: lighten;
 }
 
 #main-outer {
