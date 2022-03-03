@@ -118,8 +118,11 @@ def add_job():
             "job_name": request.form.get("job_name"),
             "job_description": request.form.get("job_description"),
             "job_priority": job_priority,
+            "job_created": request.form.get("job_created"),
             "job_due_date": request.form.get("job_due_date"),
-            "created_by": session["user"]
+            "created_by": session["user"],
+            "job_status_name": request.form.get("job_status_name"),
+            "job_comments": request.form.get("job_comments")
         }
         mongo.db.jobs.insert_one(job)
         flash("New Job Added to System")
@@ -127,6 +130,11 @@ def add_job():
 
     job_type = mongo.db.job_type.find().sort("job_type_name", 1)
     return render_template("add_job.html", job_type=job_type )
+    
+    job_status = mongo.db.job_status.find().sort("job_status_name", 1)
+    return render_template("add_job_status.html", job_status=job_status )
+
+    
 
 
 @app.route("/edit_job/<job_id>", methods=["GET", "POST"])
@@ -138,8 +146,11 @@ def edit_job(job_id):
             "job_name": request.form.get("job_name"),
             "job_description": request.form.get("job_description"),
             "job_priority": job_priority,
+            "job_created": request.form.get("job_created"),
             "job_due_date": request.form.get("job_due_date"),
-            "created_by": session["user"]
+            "created_by": session["user"],
+            "job_status_name": request.form.get("job_status_name"),
+            "job_comments": request.form.get("job_comments")
         }
         mongo.db.jobs.replace_one({"_id": ObjectId(job_id)}, job_edit)
         flash("Job Successfully Updated")
@@ -147,6 +158,9 @@ def edit_job(job_id):
     job = mongo.db.jobs.find_one({"_id": ObjectId(job_id)})
     job_type = mongo.db.job_type.find().sort("job_type_name", 1)
     return render_template("edit_job.html", job=job, job_type=job_type)
+
+    job_status = mongo.db.job_status.find().sort("job_status_name", 1)
+    return render_template("add_job_status.html", job_status=job_status )
 
 
 @app.route("/delete_job/<job_id>")
@@ -175,11 +189,37 @@ def add_job_type():
     return render_template("add_job_type.html")
 
 
-@app.route("/delete_category/<job_types_id>")
+@app.route("/delete_job_type/<job_types_id>")
 def delete_job_type(job_types_id):
     mongo.db.job_type.delete_one({"_id": ObjectId(job_types_id)})
     flash("Job Type Successfully Deleted")
     return redirect(url_for("get_job_type"))
+
+
+@app.route("/get_job_status")
+def get_job_status():
+    job_status = list(mongo.db.job_status.find().sort("job_status_name", 1))
+    return render_template("job_status.html", job_status=job_status)
+
+
+@app.route("/add_job_status", methods=["GET", "POST"])
+def add_job_status():
+    if request.method == "POST":
+        job_status = {
+            "job_status_name": request.form.get("job_status_name")
+        }
+        mongo.db.job_status.insert_one(job_status)
+        flash("New Job Status Added")
+        return redirect(url_for("get_job_status"))
+
+    return render_template("add_job_status.html")
+
+
+@app.route("/delete_job_status/<job_status_id>")
+def delete_job_status(job_status_id):
+    mongo.db.job_status.delete_one({"_id": ObjectId(job_status_id)})
+    flash("Job Status Successfully Deleted")
+    return redirect(url_for("get_job_status"))
 
 
 if __name__ == "__main__":

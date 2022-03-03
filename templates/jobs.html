@@ -15,7 +15,7 @@
             </div>
             <div class="col s9">
                 <strong>{{ job.job_type_name }}</strong> - Due Date: {{ job.job_due_date }}
-                    {% if job.job_priority == "on" %}
+                 {% if job.job_priority == "on" %}
                         <i class="material-icons tooltipped" data-position="right" data-tooltip="URGENT!">whatshot</i>
                     {% endif %}
             </div>
@@ -23,7 +23,10 @@
         <div class="collapsible-body">
             <strong>{{ job.job_name }}</strong> 
             <p>{{ job.job_description }}</p>
+            <p>Job Status: {{ job.job_status }}</p>
             <p><em>by: {{ job.created_by }}</em></p>
+            <p>Job Created Date: {{ job.job_created }}</p>
+            <p>Comments:{{ job.job_comments }}</p>
         </div>
     </li>
     {% endfor %}

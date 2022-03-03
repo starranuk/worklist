@@ -17,8 +17,7 @@
     <title>Jobs Worklist</title>
 </head>
 <body>
-
-    <header>
+  <header>
         <nav>
            <!-- Top Navigation bar -->
             <div class="nav-wrapper #4a148c purple darken-4">
@@ -33,6 +32,7 @@
                   <li><a href="{{ url_for('add_job') }}">New Job</a></li>
                   {% if session.user|lower == "sysadmin"|lower %}
                   <li><a href="{{ url_for('get_job_type') }}">Manage Job Types</a></li>
+                  <li><a href="{{ url_for('get_job_status') }}">Manage Job Status</a></li>
                   {% endif %}
                   <li><a href="{{ url_for('logout') }}">Log Out</a></li>
                     {% if session.user|lower == "sysadmin"|lower %}
@@ -53,6 +53,7 @@
                   <li><a href="{{ url_for('add_job') }}">New Job</a></li>
                   {% if session.user|lower == "sysadmin"|lower %}
                   <li><a href="{{ url_for('get_job_type') }}">Manage Job Types</a></li>
+                  <li><a href="{{ url_for('get_job_status') }}">Manage Job Status</a></li>
                   {% endif %}
                   <li><a href="{{ url_for('logout') }}">Log Out</a></li>
                   <li><a href="{{ url_for('create_account') }}">Create Staff Account</a></li>
@@ -61,7 +62,7 @@
                   {% endif %}
           </ul>
 
-    </header>
+  </header>
 
     <section>
       <!--Flash messages for user-->
@@ -79,7 +80,17 @@
     <main class="container">
       {% block content %}
       {% endblock %}
-  
+     <!--Hero Image-->
+      <section id=main-outer>
+        <div id="main-image"></div>
+        <div id="cover-text-upper">
+          <h2>Principle Lifting and Safety</h2>
+        </div>
+        <div id="cover-text-lower">
+          <h2>Supplying Everything Below the Hook </h2>
+          <h2>Tel:02921 322700</h2>
+        </div>
+      </section>
     </main>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
