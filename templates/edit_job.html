@@ -5,19 +5,7 @@
 
   <div class="row card-panel purple lighten-5">
       <form class="col s12" method="POST" action="{{ url_for('edit_job', job_id=job._id) }}">
-      <!-- Dropdown for Select Job Type -->
-      <div class="row">
-        <div class="input-field col s12">
-          <i class="material-icons prefix">dvr</i>
-          <select id="job_type_name" name="job_type_name" class="validate" required>
-          <option value="" disabled selected>Select Job Type</option>
-      {% for job_category in job_type %}
-        <option value="{{job_category.job_type_name}}">{{job_category.job_type_name}}</option>
-      {% endfor %}
-    </select>
-            <label for="job_type_name">Job Type</label>
-        </div>
-      </div>
+      
       <!-- Job Name -->
       <div class="row">
         <div class="input-field col s12">
@@ -45,17 +33,17 @@
           <label for="job_due_date">Job Due Date</label>
         </div>
       </div>
-      <!-- Dropdown for Job Status -->
+      <!--  Job Status -->
       <div class="row">
         <div class="input-field col s12">
           <i class="material-icons prefix">dvr</i>
-              <select id="job_status_name" name="job_status_name" class="validate">
-              <option value="" disabled selected>Select Job Status</option>
-          {% for status in job_status %}
-              <option value="{{ status.job_status_name }}">{{ status.job_status_name }}</option>
-          {% endfor %}
-              </select>
-              <label for="job_status_name">Job Status</label>
+          <select id="job_status_name" name="job_status_name" class="validate" required>
+          <option value="" disabled selected>Select Job Status</option>
+      {% for job_status_n in job_status %}
+        <option value="{{job_status_n.job_status_name}}">{{job_status_n.job_status_name}}</option>
+      {% endfor %}
+        </select>
+            <label for="job_status_name">Job Status</label>
         </div>
       </div>
        <!-- Job Comments -->

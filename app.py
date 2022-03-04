@@ -142,7 +142,6 @@ def edit_job(job_id):
     if request.method == "POST":
         job_priority = "on" if request.form.get("job_priority") else "off"
         job_edit = {
-            "job_type_name": request.form.get("job_type_name"),
             "job_name": request.form.get("job_name"),
             "job_description": request.form.get("job_description"),
             "job_priority": job_priority,
@@ -156,6 +155,7 @@ def edit_job(job_id):
         flash("Job Successfully Updated")
 
     job = mongo.db.jobs.find_one({"_id": ObjectId(job_id)})
+    
     job_type = mongo.db.job_type.find().sort("job_type_name", 1)
     return render_template("edit_job.html", job=job, job_type=job_type)
 
