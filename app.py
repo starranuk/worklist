@@ -31,6 +31,12 @@ def get_jobs():
     jobs = list(mongo.db.jobs.find())
     return render_template("jobs.html", jobs=jobs)
 
+@app.route("/")
+@app.route("/get_staff")
+def get_staff():
+    staff = list(mongo.db.staff.find())
+    return render_template("profile.html", staff=staff)
+
 
 # User registration
 @app.route("/create_account", methods=["GET", "POST"])
@@ -48,7 +54,10 @@ def create_account():
         create_account = {
             "username": request.form.get("username").lower(),
             "password": generate_password_hash(request.form.get("password")),
-            "role": request.form.get("role").lower()
+            "first_name": request.form.get("first_name").lower(),
+            "surname": request.form.get("surname").lower(),
+            "role": request.form.get("role").lower(),
+            "account_created": request.form.get("account_created").lower()
         }
         mongo.db.staff.insert_one(create_account)
 
@@ -129,12 +138,8 @@ def add_job():
         return redirect(url_for("get_jobs"))
 
     job_type = mongo.db.job_type.find().sort("job_type_name", 1)
-    return render_template("add_job.html", job_type=job_type )
-    
     job_status = mongo.db.job_status.find().sort("job_status_name", 1)
-    return render_template("add_job_status.html", job_status=job_status )
-
-    
+    return render_template("add_job.html", job_type=job_type, job_status=job_status )
 
 
 @app.route("/edit_job/<job_id>", methods=["GET", "POST"])
@@ -155,14 +160,12 @@ def edit_job(job_id):
         flash("Job Successfully Updated")
 
     job = mongo.db.jobs.find_one({"_id": ObjectId(job_id)})
-    
+
     job_type = mongo.db.job_type.find().sort("job_type_name", 1)
-    return render_template("edit_job.html", job=job, job_type=job_type)
-
     job_status = mongo.db.job_status.find().sort("job_status_name", 1)
-    return render_template("add_job_status.html", job_status=job_status )
+    return render_template("edit_job.html", job=job, job_type=job_type, job_status=job_status)
 
-
+    
 @app.route("/delete_job/<job_id>")
 def delete_job(job_id):
     mongo.db.jobs.delete_one({"_id": ObjectId(job_id)})

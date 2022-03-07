@@ -1,82 +1,82 @@
 {% extends "base.html" %}
 {% block content %}
 
-  <h3 class="center-align">Edit Job</h3>
+<h3 class="center-align">Edit Job</h3>
 
-  <div class="row card-panel purple lighten-5">
-      <form class="col s12" method="POST" action="{{ url_for('edit_job', job_id=job._id) }}">
-      
-      <!-- Job Name -->
-      <div class="row">
-        <div class="input-field col s12">
-          <i class="material-icons prefix">account_circle</i>
-          <input id="job_name" name="job_name" minlength="5" maxlength="50"
-          value="{{ job.job_name }}" type="text" class="validate" required>
-          <label for="job_name">Job Name</label>
-        </div>
-      </div>
-
-      <!-- Job Description -->
-    <div class="row">
-        <div class="input-field col s12">
-          <i class="material-icons prefix">description</i>
-          <textarea id="job_description" name="job_description" minlength="5" maxlength="200" class="materialize-textarea validate" required>
-            {{- job.job_description -}}</textarea>
-          <label for="job_description">Job Description</label>
-        </div>
-      </div>
-      <!-- Set the completion Date -->
-      <div class="row">
-        <div class="input-field col s12">
-          <i class="material-icons prefix">date_range</i>
-          <input id="job_due_date" name="job_due_date" type="text" value="{{ job.job_due_date }}" class="datepicker validate" required>
-          <label for="job_due_date">Job Due Date</label>
-        </div>
-      </div>
-      <!--  Job Status -->
-      <div class="row">
-        <div class="input-field col s12">
-          <i class="material-icons prefix">dvr</i>
-          <select id="job_status_name" name="job_status_name" class="validate" required>
-          <option value="" disabled selected>Select Job Status</option>
-      {% for job_status_n in job_status %}
-        <option value="{{job_status_n.job_status_name}}">{{job_status_n.job_status_name}}</option>
-      {% endfor %}
-        </select>
-            <label for="job_status_name">Job Status</label>
-        </div>
-      </div>
-       <!-- Job Comments -->
+<div class="row card-panel purple lighten-5">
+    <form class="col s12" method="POST" action="{{ url_for('edit_job', job_id=job._id) }}">
+    
+    <!-- Job Name -->
     <div class="row">
       <div class="input-field col s12">
-        <i class="material-icons prefix">description</i>
-        <textarea id="job_comments" name="job_comments" minlength="5" maxlength="400" class="materialize-textarea validate" required>
-          {{- job.job_comments -}}</textarea>
-        <label for="job_comments">Job Comments</label>
+        <i class="material-icons prefix">account_circle</i>
+        <input id="job_name" name="job_name" minlength="5" maxlength="50"
+        value="{{ job.job_name }}" type="text" class="validate" required>
+        <label for="job_name">Job Name</label>
       </div>
     </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <!-- Priority Switch -->
-          <div class="switch">
-            <i class="material-icons prefix">info_outline</i>       
-            <label for="job_priority">
-                {% if job.job_priority %}
-                    <input type="checkbox" id="job_priority" name="job_priority" checked>
-                {% else %}
-                    <input type="checkbox" id="job_priority" name="job_priority">
-                {% endif %}
-                <span class="lever"></span>
-              Yes
-            </label>
-          </div>
+
+    <!-- Job Description -->
+  <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">description</i>
+        <textarea id="job_description" name="job_description" minlength="5" maxlength="200" class="materialize-textarea validate" required>
+          {{- job.job_description -}}</textarea>
+        <label for="job_description">Job Description</label>
+      </div>
+    </div>
+    <!-- Set the completion Date -->
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">date_range</i>
+        <input id="job_due_date" name="job_due_date" type="text" value="{{ job.job_due_date }}" class="datepicker validate" required>
+        <label for="job_due_date">Job Due Date</label>
+      </div>
+    </div>
+    <!--  Job Status -->
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">dvr</i>
+        <select id="job_status_name" name="job_status_name" class="validate" required>
+        <option value="" disabled selected>Select Job Status</option>
+    {% for job_status_n in job_status %}
+      <option value="{{job_status_n.job_status_name}}">{{job_status_n.job_status_name}}</option>
+    {% endfor %}
+      </select>
+          <label for="job_status_name">Job Status</label>
+      </div>
+    </div>
+     <!-- Job Comments -->
+  <div class="row">
+    <div class="input-field col s12">
+      <i class="material-icons prefix">description</i>
+      <textarea id="job_comments" name="job_comments" minlength="5" maxlength="400" class="materialize-textarea validate" required>
+        {{- job.job_comments -}}</textarea>
+      <label for="job_comments">Job Comments</label>
+    </div>
+  </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <!-- Priority Switch -->
+        <div class="switch">
+          <i class="material-icons prefix">info_outline</i>       
+          <label for="job_priority">
+              {% if job.job_priority %}
+                  <input type="checkbox" id="job_priority" name="job_priority" checked>
+              {% else %}
+                  <input type="checkbox" id="job_priority" name="job_priority">
+              {% endif %}
+              <span class="lever"></span>
+            Yes
+          </label>
         </div>
       </div>
     </div>
-    
-    <div class="row">
-      <div class="col s12 center-align">
-        <!-- Delete Job Button only for sysadmin user-->
+  </div>
+  
+  <div class="row">
+    <div class="col s12 center-align">
+      <!-- Delete Job Button only for sysadmin user-->
         {% if session.user|lower == "sysadmin"|lower %}
           <a href="{{ url_for('delete_job', job_id=job._id) }}" <a class="red btn-large"><i class="material-icons left"></i>Delete Job</a>
         {% endif %}
@@ -84,8 +84,8 @@
         <a href="{{ url_for('get_jobs') }}" class="btn-large red">
             Return to Worklist<i class="fas.fa-times-circle.right"></i>
         </a>
-        <button type="submit" clasee="blue btn-large" class="waves-effect waves-light btn-">
-          <i class="material-icons left">edit</i>Save Changes</button>
+        <button type="submit" class="btn-large light-blue darken-1 text-shadow">
+          Edit Category <i class="fas fa-edit right"></i>
       </div>
     </div>
   </form>
