@@ -38,7 +38,7 @@
                   <li><a href="{{ url_for('logout') }}">Log Out</a></li>
                     {% if session.user|lower == "sysadmin"|lower %}
                       <li><a href="{{ url_for('create_account') }}">Create Staff Account</a></li>
-                      <li><a href="{{ url_for('get_staff') }}">Edit Staff Account</a></li>
+                      <li><a href="{{ url_for('get_staff') }}">All Staff</a></li>
                     {% endif %}
                 {% else %}
                   <li><a href="{{ url_for('login') }}">Login</a></li>
@@ -60,7 +60,7 @@
                   <li><a href="{{ url_for('logout') }}">Log Out</a></li>
                     {% if session.user|lower == "sysadmin"|lower %}
                       <li><a href="{{ url_for('create_account') }}">Create Staff Account</a></li>
-                      <li><a href="{{ url_for('get_staff') }}">Edit Staff Account</a></li>
+                      <li><a href="{{ url_for('get_staff') }}">All Staff</a></li>
                     {% endif %}
                   {% else %}
                     <li><a href="{{ url_for('login') }}">Login</a></li>

@@ -68,8 +68,8 @@ def create_account():
     return render_template("create_account.html")
 
 
-@app.route("/edit_account/<staff_id>", methods=["GET", "POST"])
-def edit_account(staff_id):
+@app.route("/edit_account/<account_id>", methods=["GET", "POST"])
+def edit_account(account_id):
     if request.method == "POST":
         account_edit = {
            "username": request.form.get("username").lower(),
@@ -79,11 +79,11 @@ def edit_account(staff_id):
             "role": request.form.get("role").lower(),
             "account_created": request.form.get("account_created").lower()
         }
-        mongo.db.staff.replace_one({"_id": ObjectId(staff_id)}, account_edit)
+        mongo.db.staff.replace_one({"_id": ObjectId(account_id)}, account_edit)
         flash("Account Successfully Updated")
 
-    account = mongo.db.staff.find_one({"_id": ObjectId(staff_id)})
-    return render_template("edit_staff_account.html", account=account)
+    account = mongo.db.staff.find_one({"_id": ObjectId(account_id)})
+    return render_template("edit_staff.html", account=account)
 
 
 # User Login
