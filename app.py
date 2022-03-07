@@ -31,11 +31,12 @@ def get_jobs():
     jobs = list(mongo.db.jobs.find())
     return render_template("jobs.html", jobs=jobs)
 
+
 @app.route("/")
 @app.route("/get_staff")
 def get_staff():
     staff = list(mongo.db.staff.find())
-    return render_template("profile.html", staff=staff)
+    return render_template("staff.html", staff=staff)
 
 
 # User registration
@@ -65,6 +66,24 @@ def create_account():
         session["staff"] = request.form.get("username").lower()
         flash("Staff members registration succesful")
     return render_template("create_account.html")
+
+
+@app.route("/edit_account/<staff_id>", methods=["GET", "POST"])
+def edit_account(staff_id):
+    if request.method == "POST":
+        account_edit = {
+           "username": request.form.get("username").lower(),
+            "password": generate_password_hash(request.form.get("password")),
+            "first_name": request.form.get("first_name").lower(),
+            "surname": request.form.get("surname").lower(),
+            "role": request.form.get("role").lower(),
+            "account_created": request.form.get("account_created").lower()
+        }
+        mongo.db.staff.replace_one({"_id": ObjectId(staff_id)}, account_edit)
+        flash("Account Successfully Updated")
+
+    account = mongo.db.staff.find_one({"_id": ObjectId(staff_id)})
+    return render_template("edit_staff_account.html", account=account)
 
 
 # User Login
