@@ -123,6 +123,7 @@ def profile(username):
     username = mongo.db.staff.find_one(
         {"username": session["user"]})["username"]
 
+
     if session["user"]:
         return render_template("profile.html", username=username)
 

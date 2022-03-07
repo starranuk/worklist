@@ -6,13 +6,9 @@
             <div class="card-panel teal">
                 <h3 class="center-align">
                     {{ username }}'s Profile
+                    {{ role}} Role
                 </h3> 
-                {% for staff in staff %}
-                    <p>First Name:{{ staff.first_name }}</p>
-                    <p>Surname:{{ staff.surname }}</p>
-                    <p>Staff Role:{{ staff.role }}</p>
-                    <p>Date Account Created:{{ staff.account_created }}</p>
-                {% endfor %}
+               
             </div>
         </div>       
     </div>
