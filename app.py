@@ -25,14 +25,14 @@ def home():
     return render_template("index.html")
 
 
-@app.route("/")
+
 @app.route("/get_jobs")
 def get_jobs():
     jobs = list(mongo.db.jobs.find())
     return render_template("jobs.html", jobs=jobs)
 
 
-@app.route("/")
+
 @app.route("/get_staff")
 def get_staff():
     staff = list(mongo.db.staff.find())
@@ -42,6 +42,13 @@ def get_staff():
 # User registration
 @app.route("/create_account", methods=["GET", "POST"])
 def create_account():
+    # Any view that requires user login should peform a login check at the very
+    # beginning.
+    # Also checks that the logged in user is the "sysadmin".
+    # Credit to Brian Macharia my course Mentor.
+    if ("user" not in session) or (session["user"].lower() != "sysadmin"):
+        return redirect(url_for("login"))
+
     if request.method == "POST":
         # Check to see if user already exists in MongoDB
         existing_user = mongo.db.staff.find_one(
@@ -70,6 +77,9 @@ def create_account():
 
 @app.route("/edit_account/<account_id>", methods=["GET", "POST"])
 def edit_account(account_id):
+    if ("user" not in session) or (session["user"].lower() != "sysadmin"):
+        return redirect(url_for("login"))
+
     if request.method == "POST":
         account_edit = {
            "username": request.form.get("username").lower(),
@@ -140,6 +150,9 @@ def logout():
 
 @app.route("/add_job", methods=["GET", "POST"])
 def add_job():
+    if ("user" not in session):
+        return redirect(url_for("login"))
+
     if request.method == "POST":
         job_priority = "on" if request.form.get("job_priority") else "off"
         job = {
@@ -159,11 +172,15 @@ def add_job():
 
     job_type = mongo.db.job_type.find().sort("job_type_name", 1)
     job_status = mongo.db.job_status.find().sort("job_status_name", 1)
-    return render_template("add_job.html", job_type=job_type, job_status=job_status )
+    staff = mongo.db.staff.find().sort("username", 1)
+    return render_template("add_job.html", job_type=job_type, job_status=job_status, staff=staff )
 
 
 @app.route("/edit_job/<job_id>", methods=["GET", "POST"])
 def edit_job(job_id):
+    if ("user" not in session):
+        return redirect(url_for("login"))
+
     if request.method == "POST":
         job_priority = "on" if request.form.get("job_priority") else "off"
         job_edit = {
@@ -172,7 +189,7 @@ def edit_job(job_id):
             "job_priority": job_priority,
             "job_created": request.form.get("job_created"),
             "job_due_date": request.form.get("job_due_date"),
-            "created_by": session["user"],
+            "username": request.form.get("username"),
             "job_status_name": request.form.get("job_status_name"),
             "job_comments": request.form.get("job_comments")
         }
@@ -183,7 +200,8 @@ def edit_job(job_id):
 
     job_type = mongo.db.job_type.find().sort("job_type_name", 1)
     job_status = mongo.db.job_status.find().sort("job_status_name", 1)
-    return render_template("edit_job.html", job=job, job_type=job_type, job_status=job_status)
+    staff = mongo.db.staff.find().sort("username", 1)
+    return render_template("edit_job.html", job=job, job_type=job_type, job_status=job_status, staff=staff)
 
     
 @app.route("/delete_job/<job_id>")
@@ -201,6 +219,9 @@ def get_job_type():
 
 @app.route("/add_job_type", methods=["GET", "POST"])
 def add_job_type():
+    if (session["user"].lower() != "sysadmin"):
+        return redirect(url_for("login"))
+
     if request.method == "POST":
         job_types = {
             "job_type_name": request.form.get("job_type_name")
@@ -227,6 +248,9 @@ def get_job_status():
 
 @app.route("/add_job_status", methods=["GET", "POST"])
 def add_job_status():
+    if (session["user"].lower() != "sysadmin"):
+        return redirect(url_for("login"))
+
     if request.method == "POST":
         job_status = {
             "job_status_name": request.form.get("job_status_name")

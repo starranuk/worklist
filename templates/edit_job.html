@@ -5,7 +5,20 @@
 
 <div class="row card-panel purple lighten-5">
     <form class="col s12" method="POST" action="{{ url_for('edit_job', job_id=job._id) }}">
-    
+    <!--  Job Type drop down -->
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">dvr</i>
+        <select id="job_type_name" name="job_type_name" class="validate" required>
+        <option value="" disabled selected>Select Job Type</option>
+    {% for job_category in job_type %}
+    <!--  Credit to Brian Macharia my course Mentor for this Jinja code that retains the selection from the dropdown when editing a job -->
+      <option value="{{job_category.job_type_name}}"{% if job_category.job_type_name == job.job_type_name %} selected {% endif %} >{{job_category.job_type_name}}</option>
+    {% endfor %}
+  </select>
+          <label for="job_type_name">Job Type</label>
+      </div>
+    </div>
     <!-- Job Name -->
     <div class="row">
       <div class="input-field col s12">
@@ -40,10 +53,24 @@
         <select id="job_status_name" name="job_status_name" class="validate" required>
         <option value="" disabled selected>Select Job Status</option>
     {% for job_status_n in job_status %}
-      <option value="{{job_status_n.job_status_name}}">{{job_status_n.job_status_name}}</option>
+      <option value="{{job_status_n.job_status_name}}" {% if job_status_n.job_status_name == job.job_status_name %} selected {% endif %} >{{job_status_n.job_status_name}}</option>
     {% endfor %}
       </select>
-          <label for="job_status_name">Job Status</label>
+          <label for="job_status_name">Job Status:</label>
+      </div>
+    </div>
+     <!--  Update "created_by in order to allocate the job to a colleague -->
+     <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">dvr</i>
+        <select id="username" name="username" class="validate" required>
+        <option value="" disabled selected>Allocate Job to?</option>
+    {% for allocate in staff %}
+    <!--  Credit to Brian Macharia my course Mentor for this Jinja code that retains the selection from the dropdown when editing a job -->
+      <option value="{{allocate.username}}"{% if allocate.username == staff.username %} selected {% endif %} >{{allocate.username}}</option>
+    {% endfor %}
+  </select>
+          <label for="created_by">Allocated to:</label>
       </div>
     </div>
      <!-- Job Comments -->
@@ -85,7 +112,7 @@
             Return to Worklist<i class="fas.fa-times-circle.right"></i>
         </a>
         <button type="submit" class="btn-large light-blue darken-1 text-shadow">
-          Edit Category <i class="fas fa-edit right"></i>
+          Save Edits <i class="fas fa-edit right"></i>
       </div>
     </div>
   </form>
