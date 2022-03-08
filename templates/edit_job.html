@@ -59,20 +59,6 @@
           <label for="job_status_name">Job Status:</label>
       </div>
     </div>
-     <!--  Update "created_by in order to allocate the job to a colleague -->
-     <div class="row">
-      <div class="input-field col s12">
-        <i class="material-icons prefix">dvr</i>
-        <select id="username" name="username" class="validate" required>
-        <option value="" disabled selected>Allocate Job to?</option>
-    {% for allocate in staff %}
-    <!--  Credit to Brian Macharia my course Mentor for this Jinja code that retains the selection from the dropdown when editing a job -->
-      <option value="{{allocate.username}}"{% if allocate.username == staff.username %} selected {% endif %} >{{allocate.username}}</option>
-    {% endfor %}
-  </select>
-          <label for="created_by">Allocated to:</label>
-      </div>
-    </div>
      <!-- Job Comments -->
   <div class="row">
     <div class="input-field col s12">

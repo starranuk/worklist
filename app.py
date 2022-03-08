@@ -164,6 +164,7 @@ def add_job():
             "job_due_date": request.form.get("job_due_date"),
             "created_by": session["user"],
             "job_status_name": request.form.get("job_status_name"),
+            "username": session["user"],
             "job_comments": request.form.get("job_comments")
         }
         mongo.db.jobs.insert_one(job)
@@ -172,8 +173,7 @@ def add_job():
 
     job_type = mongo.db.job_type.find().sort("job_type_name", 1)
     job_status = mongo.db.job_status.find().sort("job_status_name", 1)
-    staff = mongo.db.staff.find().sort("username", 1)
-    return render_template("add_job.html", job_type=job_type, job_status=job_status, staff=staff )
+    return render_template("add_job.html", job_type=job_type, job_status=job_status )
 
 
 @app.route("/edit_job/<job_id>", methods=["GET", "POST"])
@@ -200,8 +200,7 @@ def edit_job(job_id):
 
     job_type = mongo.db.job_type.find().sort("job_type_name", 1)
     job_status = mongo.db.job_status.find().sort("job_status_name", 1)
-    staff = mongo.db.staff.find().sort("username", 1)
-    return render_template("edit_job.html", job=job, job_type=job_type, job_status=job_status, staff=staff)
+    return render_template("edit_job.html", job=job, job_type=job_type, job_status=job_status)
 
     
 @app.route("/delete_job/<job_id>")
