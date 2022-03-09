@@ -184,6 +184,7 @@ def edit_job(job_id):
     if request.method == "POST":
         job_priority = "on" if request.form.get("job_priority") else "off"
         job_edit = {
+            "job_type_name": request.form.get("job_type_name"),
             "job_name": request.form.get("job_name"),
             "job_description": request.form.get("job_description"),
             "job_priority": job_priority,
