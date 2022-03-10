@@ -145,8 +145,6 @@ def staff_profile(account_id):
             "role": request.form.get("role").lower(),
             "account_created": request.form.get("account_created").lower()
         }
-        mongo.db.staff.replace_one({"_id": ObjectId(account_id)}, account_profile)
-        flash("Account Successfully Updated")
 
     account = mongo.db.staff.find_one({"_id": ObjectId(account_id)})
     return render_template("staff_profile.html", account=account)
@@ -158,8 +156,6 @@ def profile(username):
     # Retrieve the session users ursername from MongoDB
     username = mongo.db.staff.find_one(
         {"username": session["user"]})["username"]
-
-
     if session["user"]:
         return render_template("profile.html", username=username)
 

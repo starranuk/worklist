@@ -9,7 +9,7 @@
         <div class="collapsible-header">
             <div class="col s4">
                 <i class="material-icons">view_day</i>
-                {% if session.user|lower == staff.username|lower %}
+                {% if session.user == account.username|lower %}
                 <a href="{{ url_for('staff_profile', account_id=account._id) }}" class="btn-small light-blue lighten-1">Edit</a>
                 {% endif %}
             </div>
