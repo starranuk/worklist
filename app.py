@@ -28,6 +28,8 @@ def home():
 
 @app.route("/get_jobs")
 def get_jobs():
+    if ("user" not in session):
+        return redirect(url_for("login"))
     jobs = list(mongo.db.jobs.find())
     return render_template("jobs.html", jobs=jobs)
 
