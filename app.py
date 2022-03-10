@@ -134,7 +134,7 @@ def login():
 
 @app.route("/staff_profile/<account_id>", methods=["GET", "POST"])
 def staff_profile(account_id):
-    if ("user" not in session) or (session["user"].lower() != "sysadmin"):
+    if ("user" not in session):
         return redirect(url_for("login"))
 
     if request.method == "POST":
