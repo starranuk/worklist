@@ -28,6 +28,7 @@
                   <li><a href="{{ url_for('home') }}">Home</a></li>
                   {% if session.user %}
                   <li><a href="{{ url_for('get_jobs') }}">Worklist</a></li>
+                  <li><a href="{{ url_for('list_staff') }}">List of Colleagues</a></li>
                   <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
                   <li><a href="{{ url_for('add_job') }}">New Job</a></li>
                   {% if session.user|lower == "sysadmin"|lower %}
@@ -50,6 +51,7 @@
             <li class="center-align light-blue-text text-darken 4">Task Manager</h4></li>
             {% if session.user %}
                   <li><a href="{{ url_for('get_jobs') }}">Worklist</a></li>
+                  <li><a href="{{ url_for('list_staff') }}">List of Colleagues</a></li>
                   <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
                   <li><a href="{{ url_for('add_job') }}">New Job</a></li>
                   {% if session.user|lower == "sysadmin"|lower %}

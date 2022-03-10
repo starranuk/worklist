@@ -39,6 +39,12 @@ def get_staff():
     return render_template("staff.html", staff=staff)
 
 
+@app.route("/list_staff")
+def list_staff():
+    staff = list(mongo.db.staff.find())
+    return render_template("list_staff.html", staff=staff)
+
+
 # User registration
 @app.route("/create_account", methods=["GET", "POST"])
 def create_account():
@@ -123,7 +129,27 @@ def login():
             flash("Username and/or Password are Incorrect!")
             return redirect(url_for("login"))
 
-    return render_template("login.html")    
+    return render_template("login.html")  
+
+
+@app.route("/staff_profile/<account_id>", methods=["GET", "POST"])
+def staff_profile(account_id):
+    if ("user" not in session) or (session["user"].lower() != "sysadmin"):
+        return redirect(url_for("login"))
+
+    if request.method == "POST":
+        account_profile = {
+           "username": request.form.get("username").lower(),
+            "first_name": request.form.get("first_name").lower(),
+            "surname": request.form.get("surname").lower(),
+            "role": request.form.get("role").lower(),
+            "account_created": request.form.get("account_created").lower()
+        }
+        mongo.db.staff.replace_one({"_id": ObjectId(account_id)}, account_profile)
+        flash("Account Successfully Updated")
+
+    account = mongo.db.staff.find_one({"_id": ObjectId(account_id)})
+    return render_template("staff_profile.html", account=account)
 
 
 # User Profile
@@ -272,4 +298,4 @@ def delete_job_status(job_status_id):
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
-            debug=True)  
+            debug=True) 

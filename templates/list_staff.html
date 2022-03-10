@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3 class="center-align">All Staff</h3>
+
+<ul class="collapsible">
+    {% for account in staff %}
+    <li>
+        <div class="collapsible-header">
+            <div class="col s4">
+                <i class="material-icons">view_day</i>
+                {% if session.user|lower == staff.username|lower %}
+                <a href="{{ url_for('staff_profile', account_id=account._id) }}" class="btn-small light-blue lighten-1">Edit</a>
+                {% endif %}
+            </div>
+            <div class="col s9">
+                <strong>Username:{{ account.username }}</strong>
+                    
+            </div>
+        </div>
+        <div class="collapsible-body">
+            <strong>First Name:{{ account.first_name }}</strong>
+            <p>Surname:{{ account.surname }}</p>
+            <p>Staff Role:{{ account.role }}</p>
+            <p>Date Account Created:{{ account.account_created }}</p>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
