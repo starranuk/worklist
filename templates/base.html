@@ -22,7 +22,7 @@
         <nav>
            <!-- Top Navigation bar -->
             <div class="nav-wrapper #4a148c purple darken-4">
-              <a href="{{ url_for('get_jobs') }}"  alt="Principle Lifting and Safety">Principle Lifting and Safety</a>
+              <a href="{{ url_for('get_jobs') }}"  alt="Below the Hook Ltd">Below the Hook Ltd</a>
               <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
               <ul class="right hide-on-med-and-down">
                   <li><a href="{{ url_for('home') }}">Home</a></li>
@@ -34,11 +34,11 @@
                   <li><a href="{{ url_for('get_job_type') }}">Manage Job Types</a></li>
                   <li><a href="{{ url_for('get_job_status') }}">Manage Job Status</a></li>
                   {% endif %}
-                  <li><a href="{{ url_for('logout') }}">Log Out</a></li>
                     {% if session.user|lower == "sysadmin"|lower %}
                       <li><a href="{{ url_for('create_account') }}">Create Staff Account</a></li>
                       <li><a href="{{ url_for('get_staff') }}">All Staff</a></li>
                     {% endif %}
+                    <li><a href="{{ url_for('logout') }}">Log Out</a></li>
                 {% else %}
                   <li><a href="{{ url_for('login') }}">Login</a></li>
                 {% endif %}
@@ -56,11 +56,11 @@
                   <li><a href="{{ url_for('get_job_type') }}">Manage Job Types</a></li>
                   <li><a href="{{ url_for('get_job_status') }}">Manage Job Status</a></li>
                   {% endif %}
-                  <li><a href="{{ url_for('logout') }}">Log Out</a></li>
                     {% if session.user|lower == "sysadmin"|lower %}
                       <li><a href="{{ url_for('create_account') }}">Create Staff Account</a></li>
                       <li><a href="{{ url_for('get_staff') }}">All Staff</a></li>
                     {% endif %}
+                    <li><a href="{{ url_for('logout') }}">Log Out</a></li>
                   {% else %}
                     <li><a href="{{ url_for('login') }}">Login</a></li>
                   {% endif %}

@@ -120,7 +120,7 @@ def login():
                 flash("Welcome to the PLS Worklist System, {}".format(
                         request.form.get("username")))
                 return redirect(url_for(
-                        "profile", username=session["user"]))
+                        "home", username=session["user"]))
             else:
                 # Invalid password
                 flash("Username and/or Password are Incorrect!")
@@ -159,7 +159,7 @@ def profile(username):
     username = mongo.db.staff.find_one(
         {"username": session["user"]})["username"]
     if session["user"]:
-        return render_template("profile.html", username=username)
+        return render_template("index.html", username=username)
 
     return redirect(url_for("login"))
 

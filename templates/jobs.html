@@ -11,11 +11,16 @@
                 <div class="col s4">
                     <i class="material-icons">view_day</i>
                     {% if session.user|lower == job.username|lower %}
-                    <a href="{{ url_for('edit_job', job_id=job._id) }}" class="btn-small light-blue lighten-1">Edit</a>
+                    <a href="{{ url_for('edit_job', job_id=job._id) }}" class="btn-small light-blue lighten-1">Edit Job</a>
+                    {% endif %}
+                    {% if session.user|lower == "sysadmin"|lower %}
+                    <a href="{{ url_for('edit_job', job_id=job._id) }}" class="btn-small light-blue lighten-1">SysAdmin</a>
                     {% endif %}
                 </div>
                 <div class="col s9">
+                    <p>Job Status: <strong>{{ job.job_status_name }}</strong></p>
                     <strong>{{ job.job_type_name }}</strong> - Due Date: {{ job.job_due_date }}
+                    <p><em>Job Allocated to: <strong>{{ job.username }}</strong></em></p>
                     {% if job.job_priority == "on" %}
                             <i class="material-icons tooltipped" data-position="right" data-tooltip="URGENT!">whatshot</i>
                         {% endif %}
@@ -24,10 +29,9 @@
             <div class="collapsible-body">
                 <strong>{{ job.job_name }}</strong> 
                 <p><strong>{{ job.job_description }}</strong></p>
-                <p>Job Status: <strong>{{ job.job_status_name }}</strong></p>
-                <p><em>Job Allocated to: <strong>{{ job.username }}</strong></em></p>
-                <p>Job Created Date: <strong>{{ job.job_created }}</strong></p>
                 <p>Comments:{{ job.job_comments }}</p>
+                <p>Job Created by: <strong>{{ job.created_by }}</strong></p>
+                <p>Job Created Date: <strong>{{ job.job_created }}</strong></p>
             </div>
         </li>
         {% endfor %}
