@@ -1,108 +1,381 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+[Link to the live site](https://flask-worklists.herokuapp.com/)
 
-Welcome starranuk,
+**About**
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+# Internal Call Logging System 
+**Scenario**
+Below the Hook Ltd (BTH) is a small family run company  with 30 years of experience in the Lifting Industry. The company hires, sells, services and inspects equipment involved in all types of commercial lifting.
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
+**The business goals of this website are:**
 
-## Gitpod Reminders
+Improve the management of day to day business processes by providing an internal web based system to:
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+ - centrally record and share day to day business information.
+ - allocate jobs to members of the team.
+ - provide a global company worklist that displays an overview of the current work load.
 
-`python3 -m http.server`
 
-A blue button should appear to click: _Make Public_,
+This project is to provide a proof of concept for an Internal Call/Job Logging System that provides colleagues with a tool for recording jobs, creating jobs and allocating them to colleagues who can access them via the global worklist.
+***This system will be internal only and will have no SEO considerations.***
 
-Another blue button should appear to click: _Open Browser_.
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
 
-A blue button should appear to click: _Make Public_,
 
-Another blue button should appear to click: _Open Browser_.
+ - To provide potential customers with an overview of the goods and
+   services that the company provides, a contact page and alternative
+   methods of contact.
+ - Drive sales in the form of first contact (via the contact page).
+ - Reasons a User/Customer may visit the PLS Website
+ - A potential customer needing to hire lifting or safety equipment.
+ - A potential customer seeking advice in relation to lifting or working
+   at height safety issues.
+ - A potential supplier regarding sales enquiries.
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+**Potential Customers**
 
-To log into the Heroku toolbelt CLI:
+ - Construction industry contractors, Steel Fabrication Companies, Lift
+   Manufacture and Maintenance Companies.
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+ - Any companies needing to hire or purchase Lifting or height safety
+   equipment in the South Wales area.
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+## Scope
 
-------
+**What a user may expect**
 
-## Release History
+ - Easy and intuitive website navigation.
+ - That all links within the site work.
+ - Site is understandable and viewable regardless of screen size.
+ - Site looks professional and relevant to the businesses operating processes.
+ 
+ 
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+**What a user may want**
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
+ - As the majority of trade currently comes from the locality the user
+   would need to know how to physically locate the business.
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+ - To quickly be able to gain a good understanding of the products and
+   services offered by the business.
+   
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+ - To gain a sense of confidence in the business from the design,
+   statements and any affiliations with trade associations.
+ 
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+ - To find a direct method of contact on the site.
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+**The business would expect the site to provide:**
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+ - The business would expect the site to provide improved SEO
+   capabilities to encourage the relevant traffic to the site.
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+ - An overview of products and services offered by the business to
+   current and potential customers.
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+ - To provide an easy method of contact for customers and suppliers.
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+*Please note the limitations of this site as an assignment project are unable to fully reflect the actual requirements of a business site*
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+## Structure
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+**The site will consist of:**
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+ - A Home page displaying an overview of products and services offered
+   by the business to current and potential customers.
+ - A Hire products page displaying images and descriptions of the types
+   of hire equipment available for hire.
+ - A Contact page containing a form for users to contact and make
+   enquiries with PLS.
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+**Design**
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+I have used the company logo and branding colour scheme throughout the site and utilised Google’s “Eye Dropper” extension to pick out the colours from the company logo.
 
-------
+Where appropriate transparent background effects were used while still using the branding colours.
 
-## FAQ about the uptime script
+**Colour list:**
+rgba(51, 45, 108, .7);
+`#562680``#528``darkslateblue``hsl(272,54%,32%)``rgb(86,38,128)`
 
-**Why have you added this script?**
+`#f8f9fa``#fff``ghostwhite``hsl(210,16%,97%)``rgb(248,249,250)`
+**Typography**
 
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
+Although I imported Google Fonts I have mainly used Arial and increased the letter spacing on white text and purple backgrounds in the Hero images. *ref Code Institute “Love Running” tutorial site*
 
-**How will this affect me?**
+@import url("https://fonts.googleapis.com/css?family=Merienda+One|Open+Sans&display=swap");
 
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
+**Call to Action**
 
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
 
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
+### Images
 
-**So….?**
+ -No images are utilised on this system
 
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
+## Site Framework
 
-**Can I opt out?**
+**Responsive layout**
 
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
+ - The sites responsive design retains the style and branding of the
+   site as screen size change.
+ - I used the Bootstrap Branded Navbar for the site navigation in the
+   header and a Bootstrap Grid for hire equipment images.
 
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
+### Wire Frame
 
-**Anything more?**
+**Worklist - All Jobs**
+This is the page displayed with the sysadmin account logged in and looking at the All Jobs Worklist
+![Worklist - All Jobs](worklist/static/images/readme_files/all_jobs_desktop.PNG)
 
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
 
----
+## Common Features
 
-Happy coding!
+**Header**
+
+ - Colours and style match current company branding.
+ - A responsive Bootstrap Navbar with logo provides standard navigation
+   at the top of each page, with the link in the logo linking the user
+   back to the home page from all pages.
+ - The Logo on each page also links back to the Home page.
+ - On mobile devices the Navigation dropdown is located in the top left
+   hand corner of the screen, underneath the company logo and when
+   selected the text links are appropriately sized.
+
+
+
+
+## Future Features
+
+ - Sales page for product information and on-line sales.
+ - Inspection page – information on what is required by law, what is
+   best practice and detail on the services that PLS can provide.
+   provide Popup information on all hire and sales equipment images.
+ - Technical Support page with FAQ’s and possible chat facility.
+ - Add Captcha "I'm not a Robot" Turing test to the Contact form to stop automated phishing.
+
+## Technology Used
+
+ - **HTML5** – Markup Langauge for structure and functionality.
+ - **CSS3** – Cascading Stylsheets for responsiveness and consistant style
+   throughout the site.
+ - **Bootstrap 5** – for responsive navigation and image grid.
+ - **Javascript** - utilised for Popup
+ - **Google Fonts** – for Typography.
+ - **GitPod** for code editing, saving commits and pushing versions to
+   GitHub.
+ - **Git** – version control.
+ - **Microsoft Paintbrush** – resize images.
+ - **Beutifier** – to format code.
+ - **Chrome Developer Tools** – testing page responsiveness.
+
+## Testing
+
+**Navigaation**
+
+ - All links have been tested.
+ - The PLS logo returns the user back to the Home page.
+ - To aid navigation the text for the links in the Navbar are coloured
+   black when on target, with all other links in the Navbar coloured
+   red.
+
+**Responsiveness**
+
+The responsive ranges targeted were:
+
+ - For Desktops @media screen max-width 5000px  
+ - For Handheld Touchscreens with screen max-width: 1280px
+ - Mobile phones with screen max-width: 414px
+ - 
+**Responsiveness Testing**
+
+Testing was initially carried using the Chrome Developer Tools using the responsive ranges listed above. Further developer tool testing was carried out using the Firefox and Microsoft Edge developer tools.
+
+The Firefox tools did find an issue with the iPhone 6/7/8 Plus iOS11 screen size which was resolved by increasing the max width to414px.
+
+Hardware tested ranged from a Motorola G5s, Samsung Galaxy S5, 10" Amazon Kindle Fire Tablet and a widescreen desktop PC.
+
+**Browser Testing**
+Browsers used for testing were:
+
+ - Google Chrome - Desktop and Mobile
+ - Firefox - Desktop and Mobile
+ - Microsoft Edge
+ - Amazon Silk
+
+**Performance Testing**
+Performance tested against Google Lighthouse Developer Tools which were very useful for testing and as an aid to increase performance with it suggested improvements.
+An initial example of poor performance was the Contact page with the following stats:
+
+
+By altering background contrasts, font colours and improving the Metafile content the following was achieved:
+
+
+
+The final tests for the Home and Hire pages are:
+Home Page
+
+
+
+
+
+**The Companies Current WordPress Site**
+
+
+## User Testing
+### Testing - What a user may expect
+
+ 
+ **Easy and intuitive website navigation.**
+
+ - On entering the site the user immediately see's the navigation bar
+   and the easily readable links at the top of the page
+
+ **That all links within the site work.**
+ 
+
+ - All  links have been tested and selecting the logo links directly
+   back to the Home page.
+
+ **Site is understandable and viewable regardless of screen size.**
+ 
+
+ - The navigation bar automatically converts to a drop down menu when a
+   screen reaches tablet size and all pages are accessible and viewable
+   in the common mobile formats.
+
+ **Site looks professional and relevant to the product and nature of the
+   business.**
+ 
+
+ - On entering the site the user is greeted with the company logo and
+   the Hero image which shows one of the liveried company vehicles
+   outside the company premises. This shows that the company is
+   established.    
+  
+
+ - The Hero image slowly zooms in drawing the users eye    to the text 
+   over the image, the company name and below that    "Supplying
+   Everything Below The Hook" which quickly establishes the    purpose
+   of the company to any one familiar with the Lifting Industry.
+
+ 
+### What a user may want
+
+**As the majority of trade currently comes from the locality the user    would need to know how to physically locate the business.**
+All Footers on the display:
+
+ - The company address
+ - A Google map showing the location of the company
+ - Company opening times
+
+ **To quickly be able to gain a good understanding of the products and
+   services offered by the business.**
+   
+ - Just below the hero image on the home page the four main
+   products/services of the company listed and described.
+
+ - The Hire Equipment section also provides a **popup** text option
+   which explains the companies hire terms.
+
+ **To gain a sense of confidence in the business from the design,
+   statements and any affiliations with trade associations.**
+   
+ - From the design of the logo to the images used there is a clear
+   message to the user of the services provided.
+
+ - There is also a logo and link (which opens in a separate browser tab)
+   to the Hire Association of Europe (HAE) in all Footers, displaying
+   companies affiliation.
+
+**To find a direct method of contact on the site.**
+ - The Contact page  provide a clear contact and enquiry method, giving
+   the user a choice of how they wish to be contacted.
+
+### The business would expect the site to provide:
+
+**The business would expect the site to provide improved SEO  capabilities to encourage the relevant traffic to the site.**
+
+ - The Home page scored 100 on the Google Lighthouse Developer Tools
+   compared to a score of 82 for the current site.
+
+ **An overview of products and services offered by the business to
+   current and potential customers.**
+
+ - The home page lists and describes the four main products/services of
+   the company, just below the hero image.
+ - A **popup** explains the companies hire terms in the Hire box.
+ - The Hire page displays an overview of equipment available for hire.
+ 
+ **To provide an easy method of contact for customers and suppliers**
+
+ - The Contact page form is clear and attractive with the Hero image of
+   the liveried company van as background.
+
+ - The current WordPress site also has a contact form but does attract
+   some unwanted enquiries. To reduce this issue and to ensures capture
+   of all information all fields are set as "Required".
+
+## HTML and CSS Validation
+
+**HTML Testing**
+Initially some errors were picked up by the Validator, these ranged from Elements with no closing tags, elements such as iframe which required a title to double ups on alt attributes. However, as the Validator tells you what thee error is and on what line code is easily resolved.
+The following images are the pass results for all three pages:
+
+**Home Page**
+
+
+**Hire Page**
+
+
+
+**Contact Page**
+
+
+**CSS Validation**
+Although a few parsing errors were picked up initially these were resolved and the CSS code has now passed W3C validation with permission to embed their logo's if required.
+
+
+
+## Deployment
+
+**Add Commit and Push files**
+With the current project open in **GitPod** and all files saved navigate to the command line:
+
+ 1. At the command prompt type git add . and press the Enter key – this
+    selects all files in the project.
+ 2. At the next command prompt type git commit –m “add a relative
+    comment” and press the Enter key – this action adds the files to the
+    commit.
+ 3. At the next command prompt type git push and press the Enter key –
+    this action commits this version of your project to your GitHub
+    repository with the comment from the commit as it the label for any
+    files that were updated compared to the previous version.
+
+**Deploying via GitHub Pages**
+
+
+
+
+## Credits
+
+**Acknowledgements**
+ - Nicola Tarran for site testing and proof reading.
+ - Brian Macharia- Mentor support, for the advice, tips and guidance, on my first project.
+ - Reference Rebecca Kelsall crypticCaroline/MS1-Plantfactory for ReadMe inspiration and her site reminding me to add a memo field for enquires in my contact from.
+ - Alan at Tutor support
+ - Code Institute for Inspiration from  “Love Running” and “Coders Coffee House” tutorials.
+ - W3Schools - for popup code and snippets
+ - Stack Overflow - for code snippets
+
+
+
+
+
+
+
+
+
+> Written with [StackEdit](https://stackedit.io/).
+
+
+
