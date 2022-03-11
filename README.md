@@ -125,7 +125,7 @@ Although I imported Google Fonts I have mainly used Arial and increased the lett
 
 **Worklist - All Jobs**
 This is the page displayed with the sysadmin account logged in and looking at the All Jobs Worklist
-![Worklist - All Jobs](worklist/static/images/readme_files/all_jobs_desktop.PNG)
+![enter image description here](https://starranuk.github.io/dice-game/assets/readme_worklist/all_jobs_desktop.PNG)
 
 
 ## Common Features
@@ -376,6 +376,7 @@ With the current project open in **GitPod** and all files saved navigate to the 
 
 
 > Written with [StackEdit](https://stackedit.io/).
+
 
 
 
