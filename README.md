@@ -14,22 +14,8 @@ Improve the management of day to day business processes by providing an internal
  - allocate jobs to members of the team.
  - provide a global company worklist that displays an overview of the current work load.
 
-
-This project is to provide a proof of concept for an Internal Call/Job Logging System that provides colleagues with a tool for recording jobs, creating jobs and allocating them to colleagues who can access them via the global worklist.
+This project is designed to provide a proof of concept for an Internal Call/Job Logging System that provides colleagues with a tool for recording jobs, creating jobs and allocating them to colleagues who can access them via the global worklist.
 ***This system will be internal only and will have no SEO considerations.***
-
-
-
-
- - To provide potential customers with an overview of the goods and
-   services that the company provides, a contact page and alternative
-   methods of contact.
- - Drive sales in the form of first contact (via the contact page).
- - Reasons a User/Customer may visit the PLS Website
- - A potential customer needing to hire lifting or safety equipment.
- - A potential customer seeking advice in relation to lifting or working
-   at height safety issues.
- - A potential supplier regarding sales enquiries.
 
 **Potential Customers**
 
@@ -50,32 +36,7 @@ This project is to provide a proof of concept for an Internal Call/Job Logging S
  
  
 
-**What a user may want**
 
- - As the majority of trade currently comes from the locality the user
-   would need to know how to physically locate the business.
-
- - To quickly be able to gain a good understanding of the products and
-   services offered by the business.
-   
-
- - To gain a sense of confidence in the business from the design,
-   statements and any affiliations with trade associations.
- 
-
- - To find a direct method of contact on the site.
-
-**The business would expect the site to provide:**
-
- - The business would expect the site to provide improved SEO
-   capabilities to encourage the relevant traffic to the site.
-
- - An overview of products and services offered by the business to
-   current and potential customers.
-
- - To provide an easy method of contact for customers and suppliers.
-
-*Please note the limitations of this site as an assignment project are unable to fully reflect the actual requirements of a business site*
 
 ## Structure
 
@@ -127,18 +88,26 @@ Although I imported Google Fonts I have mainly used Arial and increased the lett
 This is the page displayed with the sysadmin account logged in and looking at the All Jobs Worklist
 ![enter image description here](https://starranuk.github.io/dice-game/assets/readme_worklist/all_jobs_desktop.PNG)
 
+![enter image description here](https://starranuk.github.io/dice-game/assets/readme_worklist/all_jobs_desktop_normal_user.PNG)
+
+![enter image description here](https://starranuk.github.io/dice-game/assets/readme_worklist/add_job_desktop_normal_user.PNG)
+
+![enter image description here](https://starranuk.github.io/dice-game/assets/readme_worklist/all_staff_desktop_normal_user.PNG)
+
+![enter image description here](https://starranuk.github.io/dice-game/assets/readme_worklist/all_jobs_mobile_normal_user.PNG)
+
+![enter image description here](https://starranuk.github.io/dice-game/assets/readme_worklist/add_job_mobile_normal_user.PNG)
 
 ## Common Features
 
 **Header**
 
  - Colours and style match current company branding.
- - A responsive Bootstrap Navbar with logo provides standard navigation
+ - A responsive Materialize Navbar  provides standard navigation
    at the top of each page, with the link in the logo linking the user
    back to the home page from all pages.
- - The Logo on each page also links back to the Home page.
- - On mobile devices the Navigation dropdown is located in the top left
-   hand corner of the screen, underneath the company logo and when
+ - On mobile devices the Navigation dropdown is located in the top right
+   hand corner of the screen, when
    selected the text links are appropriately sized.
 
 
@@ -158,14 +127,13 @@ This is the page displayed with the sysadmin account logged in and looking at th
  - **HTML5** – Markup Langauge for structure and functionality.
  - **CSS3** – Cascading Stylsheets for responsiveness and consistant style
    throughout the site.
- - **Bootstrap 5** – for responsive navigation and image grid.
- - **Javascript** - utilised for Popup
+ - **Materialize** – for responsive navigation.
+ - **Javascript and Jquery** - utilised for Popup
  - **Google Fonts** – for Typography.
  - **GitPod** for code editing, saving commits and pushing versions to
    GitHub.
  - **Git** – version control.
  - **Microsoft Paintbrush** – resize images.
- - **Beutifier** – to format code.
  - **Chrome Developer Tools** – testing page responsiveness.
 
 ## Testing
@@ -359,13 +327,11 @@ With the current project open in **GitPod** and all files saved navigate to the 
 ## Credits
 
 **Acknowledgements**
+The Inspiration for this project was based on the Code Institute  "Data Centric Design mini-project" by Tim Nelson.
+ - Brian Macharia- Mentor support, for the advice, tips and guidance.
  - Nicola Tarran for site testing and proof reading.
- - Brian Macharia- Mentor support, for the advice, tips and guidance, on my first project.
- - Reference Rebecca Kelsall crypticCaroline/MS1-Plantfactory for ReadMe inspiration and her site reminding me to add a memo field for enquires in my contact from.
- - Alan at Tutor support
- - Code Institute for Inspiration from  “Love Running” and “Coders Coffee House” tutorials.
- - W3Schools - for popup code and snippets
- - Stack Overflow - for code snippets
+  
+
 
 
 
@@ -376,7 +342,3 @@ With the current project open in **GitPod** and all files saved navigate to the 
 
 
 > Written with [StackEdit](https://stackedit.io/).
-
-
-
-

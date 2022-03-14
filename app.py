@@ -212,11 +212,12 @@ def edit_job(job_id):
             "job_name": request.form.get("job_name"),
             "job_description": request.form.get("job_description"),
             "job_priority": job_priority,
-            "job_created": request.form.get("job_created"),
             "job_due_date": request.form.get("job_due_date"),
             "username": request.form.get("username"),
             "job_status_name": request.form.get("job_status_name"),
-            "job_comments": request.form.get("job_comments")
+            "job_comments": request.form.get("job_comments"),
+            "job_created": request.form.get("job_created"),
+            "created_by": request.form.get("created_by")
         }
         mongo.db.jobs.replace_one({"_id": ObjectId(job_id)}, job_edit)
         flash("Job Successfully Updated")

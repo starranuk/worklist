@@ -18,7 +18,7 @@
                     {% endif %}
                 </div>
                 <div class="col s9">
-                    <p>Job Status: <strong>{{ job.job_status_name }}</strong></p>
+                    <p><strong>Job Status: {{ job.job_status_name }}</strong></p>
                     <strong>{{ job.job_type_name }}</strong> - Due Date: {{ job.job_due_date }}
                     <p><em>Job Allocated to: <strong>{{ job.username }}</strong></em></p>
                     {% if job.job_priority == "on" %}
@@ -27,8 +27,8 @@
                 </div>
             </div>
             <div class="collapsible-body">
-                <strong>{{ job.job_name }}</strong> 
-                <p><strong>{{ job.job_description }}</strong></p>
+                <strong>Job Type:{{ job.job_name }}</strong> 
+                <p><strong>Job description:{{ job.job_description }}</strong></p>
                 <p>Comments:{{ job.job_comments }}</p>
                 <p>Job Created by: <strong>{{ job.created_by }}</strong></p>
                 <p>Job Created Date: <strong>{{ job.job_created }}</strong></p>
