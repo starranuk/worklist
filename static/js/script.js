@@ -12,13 +12,15 @@ document.addEventListener('DOMContentLoaded', function () {
      let sidenavsInstance = M.Sidenav.init(sidenavs, {edge: "right"});
  });
 
+
+
  /*
     jQuery for Materialize accordion element
 */
  $(document).ready(function(){
     $('.collapsible').collapsible();
-    $('.tooltipped').tooltip();
     $('select').formSelect();
+    $('.tooltipped').tooltip();
     $('.datepicker').datepicker({
       format: "dd mmmm, yyyy",
       yearRange: 3,

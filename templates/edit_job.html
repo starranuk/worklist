@@ -24,9 +24,9 @@
 </div>
 <!--  Job Type drop down -->
 <div class="row">
-  <div class="input-field col s612">
+  <div class="input-field col s12">
     <i class="material-icons prefix">dvr</i>
-    <select id="job_type_name" name="job_type_name" class="validate" required>
+    <select id="job_type_name" name="job_type_name" class="validate">
     <option value="" disabled>Select Job Type</option>
       {% for job_category in job_type %}
       <!--  Credit to Brian Macharia my course Mentor for this Jinja code that retains the selection from the dropdown when editing a job -->
@@ -116,7 +116,31 @@
     <button type="submit" class="btn-large light-blue darken-1 text-shadow"> Save Edits <i class="fas fa-edit right"></i>
   </div>
 </div>
+  <!-- Hidden inputs to hold values of dropdown selects to be posted to backend -->
+  <input type="hidden" name="job_type_name_value" value="" />
+  <input type="hidden" name="job_status_name_value" value="" />
 </form>
 </div>
+
+<script>
+  // select the form
+  const form = document.querySelector('form');
+  // listen for form submission
+  form.onsubmit = event => {
+    // stop the form submitting
+    event.preventDefault();
+
+    // get the dropdown value and put into hidden input value
+    const jobTypeName = document.getElementsByName('job_type_name')[0].value;
+    document.getElementsByName('job_type_name_value')[0].value = jobTypeName;  
+
+     // get the dropdown value and put into hidden input value
+    const jobStatusName = document.getElementsByName('job_status_name')[0].value;
+    document.getElementsByName('job_status_name_value')[0].value = jobStatusName;
+    
+    // submit the form
+    form.submit()
+  }
+</script>
 
 {% endblock %}

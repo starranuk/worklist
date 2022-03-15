@@ -202,11 +202,19 @@ def add_job():
 
 @app.route("/edit_job/<job_id>", methods=["GET", "POST"])
 def edit_job(job_id):
+    """ docstring placeholder """
     if ("user" not in session):
         return redirect(url_for("login"))
 
+    job = mongo.db.jobs.find_one({"_id": ObjectId(job_id)})
+
     if request.method == "POST":
         job_priority = "on" if request.form.get("job_priority") else "off"
+
+        # will contain the values of the hidden inputs
+        job_type_name_value = request.form.get("job_type_name")
+        job_type_status_value = request.form.get("job_status_name")
+
         job_edit = {
             "job_type_name": request.form.get("job_type_name"),
             "job_name": request.form.get("job_name"),
@@ -219,14 +227,14 @@ def edit_job(job_id):
             "job_created": request.form.get("job_created"),
             "created_by": request.form.get("created_by")
         }
+
         mongo.db.jobs.replace_one({"_id": ObjectId(job_id)}, job_edit)
         flash("Job Successfully Updated")
 
-    job = mongo.db.jobs.find_one({"_id": ObjectId(job_id)})
 
     job_type = mongo.db.job_type.find().sort("job_type_name", 1)
     job_status = mongo.db.job_status.find().sort("job_status_name", 1)
-    return render_template("edit_job.html", job=job, job_type=job_type, job_status=job_status)
+    return render_template("edit_job.html", job_type=job_type, job_status=job_status, job=job )
 
     
 @app.route("/delete_job/<job_id>")
