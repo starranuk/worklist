@@ -18,32 +18,11 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 
 
-import os
-from flask import (
-    Flask, flash, render_template,
-    redirect, request, session, url_for)
-from flask_pymongo import PyMongo
-from bson.objectid import ObjectId
-from werkzeug.security import generate_password_hash, check_password_hash
-if os.path.exists("env.py"):
-    import env
-
-
-app = Flask(__name__)
-
-app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
-app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
-app.secret_key = os.environ.get("SECRET_KEY")
-
-mongo = PyMongo(app)
-
-
 @app.route("/")
 @app.route("/home")
 def home():
     jobs = list(mongo.db.jobs.find())
     return render_template("index.html")
-
 
 
 @app.route("/get_jobs")
@@ -52,7 +31,6 @@ def get_jobs():
         return redirect(url_for("login"))
     jobs = list(mongo.db.jobs.find())
     return render_template("jobs.html", jobs=jobs)
-
 
 
 @app.route("/get_staff")
@@ -105,13 +83,13 @@ def create_account():
 
 @app.route("/edit_account/<account_id>", methods=["GET", "POST"])
 def edit_account(account_id):
-     # Checks if user is signed in and is sysadmin
+            # Checks if user is signed in and is sysadmin
     if ("user" not in session) or (session["user"].lower() != "sysadmin"):
         return redirect(url_for("login"))
 
     if request.method == "POST":
         account_edit = {
-           "username": request.form.get("username").lower(),
+            "username": request.form.get("username").lower(),
             "password": generate_password_hash(request.form.get("password")),
             "first_name": request.form.get("first_name").lower(),
             "surname": request.form.get("surname").lower(),
@@ -136,7 +114,7 @@ def login():
         if existing_user:
             # Check password matches the one stored in MongoDB
             if check_password_hash(
-                existing_user["password"], request.form.get("password")):
+                    existing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("username").lower()
                 flash("Welcome to the PLS Worklist System, {}".format(
                         request.form.get("username")))
@@ -151,8 +129,7 @@ def login():
             # Username doesn't exist
             flash("Username and/or Password are Incorrect!")
             return redirect(url_for("login"))
-
-    return render_template("login.html")  
+            return render_template("login.html")
 
 
 @app.route("/staff_profile/<account_id>", methods=["GET", "POST"])
@@ -163,7 +140,7 @@ def staff_profile(account_id):
 
     if request.method == "POST":
         account_profile = {
-           "username": request.form.get("username").lower(),
+            "username": request.form.get("username").lower(),
             "first_name": request.form.get("first_name").lower(),
             "surname": request.form.get("surname").lower(),
             "role": request.form.get("role").lower(),
@@ -177,13 +154,12 @@ def staff_profile(account_id):
 # User Profile
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
-     # Checks if user is signed in
+                # Checks if user is signed in
+                # Retrieve the session users ursername from MongoDB
     if ("user" not in session):
         return redirect(url_for("login"))
-        
-    #Retrieve the session users ursername from MongoDB
-    username = mongo.db.staff.find_one(
-        {"username": session["user"]})["username"]
+        username = mongo.db.staff.find_one(
+            {"username": session["user"]})["username"]
     if session["user"]:
         return render_template("profile.html", username=username)
 
@@ -200,7 +176,7 @@ def logout():
 
 @app.route("/add_job", methods=["GET", "POST"])
 def add_job():
-       # Checks if user is signed in
+            # Checks if user is signed in
     if ("user" not in session):
         return redirect(url_for("login"))
 
@@ -224,12 +200,13 @@ def add_job():
 
     job_type = mongo.db.job_type.find().sort("job_type_name", 1)
     job_status = mongo.db.job_status.find().sort("job_status_name", 1)
-    return render_template("add_job.html", job_type=job_type, job_status=job_status )
+    return render_template(
+        "add_job.html", job_type=job_type, job_status=job_status)
 
 
 @app.route("/edit_job/<job_id>", methods=["GET", "POST"])
 def edit_job(job_id):
-     # Checks if user is signed in
+                # Checks if user is signed in
     if ("user" not in session):
         return redirect(url_for("login"))
 
@@ -252,10 +229,11 @@ def edit_job(job_id):
 
     job = mongo.db.jobs.find_one({"_id": ObjectId(job_id)})
     return render_template("edit_job.html", job=job)
-    
+
+
 @app.route("/delete_job/<job_id>")
 def delete_job(job_id):
-     # Checks if user is signed in and is sysadmin
+                # Checks if user is signed in and is sysadmin
     if ("user" not in session) or (session["user"].lower() != "sysadmin"):
         return redirect(url_for("login"))
 
@@ -266,7 +244,7 @@ def delete_job(job_id):
 
 @app.route("/get_job_type")
 def get_job_type():
-     # Checks if user is signed in and is sysadmin
+                # Checks if user is signed in and is sysadmin
     if ("user" not in session) or (session["user"].lower() != "sysadmin"):
         return redirect(url_for("login"))
 
@@ -331,7 +309,7 @@ def add_job_status():
 
 @app.route("/delete_job_status/<job_status_id>")
 def delete_job_status(job_status_id):
-     # Checks if user is signed in and is sysadmin
+                # Checks if user is signed in and is sysadmin
     if (session["user"].lower() != "sysadmin"):
         return redirect(url_for("login"))
 
@@ -343,4 +321,4 @@ def delete_job_status(job_status_id):
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
-            debug=True) 
+            debug=True)
