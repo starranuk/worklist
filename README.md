@@ -41,15 +41,11 @@ This project is designed to provide a proof of concept for an Internal Call/Job 
 ## Structure
 
 **The site will consist of:**
+- **MongoDB** Non relational database, non SQL document-oriented database.
+- Mongo DB System Data Model
+![Mongo DB System Data Model](https://starranuk.github.io/dice-game/assets/readme_worklist/MongoDB_data_model.png)
 
- - A Home page displaying an overview of products and services offered
-   by the business to current and potential customers.
- - A Hire products page displaying images and descriptions of the types
-   of hire equipment available for hire.
- - A Contact page containing a form for users to contact and make
-   enquiries with PLS.
-
-**Design**
+ **Design**
 
 I have used the company logo and branding colour scheme throughout the site and utilised Google’s “Eye Dropper” extension to pick out the colours from the company logo.
 
@@ -77,10 +73,7 @@ Although I imported Google Fonts I have mainly used Arial and increased the lett
 
 **Responsive layout**
 
- - The sites responsive design retains the style and branding of the
-   site as screen size change.
- - I used the Bootstrap Branded Navbar for the site navigation in the
-   header and a Bootstrap Grid for hire equipment images.
+**Materialize Framework** – for responsive mobile navigation, grid system, date picker and dropdown pickers.
 
 ### Wire Frame
 
@@ -115,25 +108,29 @@ This is the page displayed with the sysadmin account logged in and looking at th
 
 ## Future Features
 
- - Sales page for product information and on-line sales.
- - Inspection page – information on what is required by law, what is
-   best practice and detail on the services that PLS can provide.
-   provide Popup information on all hire and sales equipment images.
+ - Improve support status functionality so that 
  - Technical Support page with FAQ’s and possible chat facility.
  - Add Captcha "I'm not a Robot" Turing test to the Contact form to stop automated phishing.
 
 ## Technology Used
 
+ -   **Python**
+ -  **Flask** Python web framework.
+
+ - **MongoDB** Non relational database, non SQL document-oriented database
+
+-   **Git** Version control.
+-   **Github** Git repository hosting service that Heroku links to.
+-   **Heroku**  Cloud Platform that allows developers to deploy apps in the cloud. Important for this project as GitHub can not host Python.
  - **HTML5** – Markup Langauge for structure and functionality.
  - **CSS3** – Cascading Stylsheets for responsiveness and consistant style
    throughout the site.
- - **Materialize** – for responsive navigation.
- - **Javascript and Jquery** - utilised for Popup
+ - **Materialize Framework** – for responsive navigation, grid system, datepicker and dropdown.
+ - **Javascript and Jquery** - utilised for Materialize
  - **Google Fonts** – for Typography.
  - **GitPod** for code editing, saving commits and pushing versions to
    GitHub.
  - **Git** – version control.
- - **Microsoft Paintbrush** – resize images.
  - **Chrome Developer Tools** – testing page responsiveness.
 
 ## Testing
@@ -141,10 +138,7 @@ This is the page displayed with the sysadmin account logged in and looking at th
 **Navigaation**
 
  - All links have been tested.
- - The PLS logo returns the user back to the Home page.
- - To aid navigation the text for the links in the Navbar are coloured
-   black when on target, with all other links in the Navbar coloured
-   red.
+ 
 
 **Responsiveness**
 
@@ -334,11 +328,5 @@ The Inspiration for this project was based on the Code Institute  "Data Centric 
 
 
 
-
-
-
-
-
-
-
 > Written with [StackEdit](https://stackedit.io/).
+
