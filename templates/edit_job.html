@@ -68,15 +68,15 @@
 </div>
 <div class="row">
   <div class="input-field col s12">
-    <!-- Job Type -->
-    <div class="row">
-      <div class="input-field col s12">
-        <i class="material-icons prefix">dvr</i>
-        <textarea id="job_status_name" name="job_status_name" type="text" class="materialize-textarea validate" required>{{- job.job_status_name -}}</textarea>
-        <label for="created_by">Job Status:</label>
-      </div>
+  <!-- Job Status -->
+  <div class="row">
+    <div class="input-field col s12">
+      <i class="material-icons prefix">dvr</i>
+      <textarea id="job_status_name" name="job_status_name" type="text" class="materialize-textarea validate" required>{{- job.job_status_name -}}</textarea>
+      <label for="created_by">Job Status:</label>
     </div>
   </div>
+</div>
 </div>
     <!-- Allocate Username -->
     <div class="row">
@@ -102,11 +102,11 @@
 <div class="row">
   <div class="col s12 center-align">
     <!-- Delete Job Button only for sysadmin user--> {% if session.user|lower == "sysadmin"|lower %} <a href="{{ url_for('delete_job', job_id=job._id) }}" <a class="btn-large red">
-      <i class="material-icons left"></i>Delete Job </a> {% endif %}
+      <i class="material-icons left"></i>Delete</a> {% endif %}
     <!-- Cancel Changes Button -->
-    <a href="{{ url_for('get_jobs') }}" class="btn-large red"> Return to Worklist <i class="fas.fa-times-circle.right"></i>
-    </a>
-    <button type="submit" class="btn-large light-blue darken-1 text-shadow"> Save Edits <i class="fas fa-edit right"></i>
+    <a href="{{ url_for('get_jobs') }}" class="btn-large blue">Worklist</a>
+    
+    <button type="submit" class="waves-effect waves-light btn-large">Save Edit</i>
   </div>
 </div>
 </form>

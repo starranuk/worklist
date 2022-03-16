@@ -15,11 +15,46 @@ body {
 }
 
 
-
 .card-title {
 	color:blue;
 }
 
 strong {
 	color:black;
+}
+
+.btn-small {
+	padding: 20px 20px;
+	height: 40px;
+	width: 80px;
+	margin: 5px;
+	text-align: center;
+}
+
+/*iMac Pro*/
+@media screen and (max-width: 5000px) {
+
+
+@media screen and (max-width: 1280px) {
+
+	
+	/*iPhone 5/SE*/
+@media screen and (max-width: 414px) {
+	
+		}
+		.btn-large {
+			
+			font-size: 5px;
+			text-align: center;
+			margin:auto;
+			height: 40px;
+			width: 80px;
+			display: inline-block;
+			padding: 0px;
+			vertical-align: middle;
+		}
+		
+
+	}	
+	
 }

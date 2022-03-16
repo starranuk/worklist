@@ -225,8 +225,6 @@ def edit_job(job_id):
     if ("user" not in session):
         return redirect(url_for("login"))
 
-        job = mongo.db.jobs.find_one({"_id": ObjectId(job_id)})
-
     if request.method == "POST":
         job_priority = "on" if request.form.get("job_priority") else "off"
         job_edit = {
@@ -234,20 +232,18 @@ def edit_job(job_id):
             "job_name": request.form.get("job_name"),
             "job_description": request.form.get("job_description"),
             "job_priority": job_priority,
-            "job_created": request.form.get("job_created"),
             "job_due_date": request.form.get("job_due_date"),
             "username": request.form.get("username"),
             "job_status_name": request.form.get("job_status_name"),
-            "job_comments": request.form.get("job_comments")
+            "job_comments": request.form.get("job_comments"),
+            "job_created": request.form.get("job_created"),
+            "created_by": request.form.get("created_by")
         }
         mongo.db.jobs.replace_one({"_id": ObjectId(job_id)}, job_edit)
         flash("Job Successfully Updated")
 
-    
-
-    
+    job = mongo.db.jobs.find_one({"_id": ObjectId(job_id)})
     return render_template("edit_job.html", job=job)
-
     
 @app.route("/delete_job/<job_id>")
 def delete_job(job_id):
