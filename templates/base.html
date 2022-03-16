@@ -15,58 +15,71 @@
      {% block styles %}
      {% endblock %}
     <title>Jobs Worklist</title>
+            
      <!--This project was inspired by the Code Institute Mini Walk Through Project TaskManagerAuth -->
 </head>
 <body>
-  <header>
-        <nav>
-           <!-- Top Navigation bar -->
-            <div class="nav-wrapper #4a148c purple darken-4">
-              <a href="{{ url_for('get_jobs') }}"  alt="Below the Hook Ltd">Below the Hook Ltd</a>
-              <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
-              <ul class="right hide-on-med-and-down">
-                  <li><a href="{{ url_for('home') }}">Home</a></li>
-                  {% if session.user %}
-                  <li><a href="{{ url_for('get_jobs') }}">Worklist</a></li>
-                  <li><a href="{{ url_for('list_staff') }}">List of Colleagues</a></li>
-                  <li><a href="{{ url_for('add_job') }}">New Job</a></li>
-                  {% if session.user|lower == "sysadmin"|lower %}
-                  <li><a href="{{ url_for('get_job_type') }}">Manage Job Types</a></li>
-                  <li><a href="{{ url_for('get_job_status') }}">Manage Job Status</a></li>
-                  {% endif %}
+    <header>
+          <nav>
+            <!-- Top Navigation bar -->
+              <div class="nav-wrapper #4a148c purple darken-4">
+                <a href="{{ url_for('get_jobs') }}"  alt="Below the Hook Ltd">Below the Hook Ltd</a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    {% if session.user %}
+                    <li><a href="{{ url_for('get_jobs') }}">Worklist</a></li>
+                    <li><a href="{{ url_for('list_staff') }}">List of Colleagues</a></li>
+                    <li><a href="{{ url_for('add_job') }}">New Job</a></li>
                     {% if session.user|lower == "sysadmin"|lower %}
-                      <li><a href="{{ url_for('create_account') }}">Create Staff Account</a></li>
-                      <li><a href="{{ url_for('get_staff') }}">All Staff</a></li>
+                    <li><a href="{{ url_for('get_job_type') }}">Manage Job Types</a></li>
+                    <li><a href="{{ url_for('get_job_status') }}">Manage Job Status</a></li>
                     {% endif %}
-                    <li><a href="{{ url_for('logout') }}">Log Out</a></li>
-                {% else %}
-                  <li><a href="{{ url_for('login') }}">Login</a></li>
-                {% endif %}
-              </ul>
-            </div>
-          </nav>
-          <!-- Side Navigation bar -->
-          <ul class="sidenav" id="mobile-demo">
-            <li class="center-align light-blue-text text-darken 4">Task Manager</h4></li>
-            {% if session.user %}
-                  <li><a href="{{ url_for('get_jobs') }}">Worklist</a></li>
-                  <li><a href="{{ url_for('list_staff') }}">List of Colleagues</a></li>
-                  <li><a href="{{ url_for('add_job') }}">New Job</a></li>
-                  {% if session.user|lower == "sysadmin"|lower %}
-                  <li><a href="{{ url_for('get_job_type') }}">Manage Job Types</a></li>
-                  <li><a href="{{ url_for('get_job_status') }}">Manage Job Status</a></li>
-                  {% endif %}
-                    {% if session.user|lower == "sysadmin"|lower %}
-                      <li><a href="{{ url_for('create_account') }}">Create Staff Account</a></li>
-                      <li><a href="{{ url_for('get_staff') }}">All Staff</a></li>
-                    {% endif %}
-                    <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+                      {% if session.user|lower == "sysadmin"|lower %}
+                        <li><a href="{{ url_for('create_account') }}">Create Staff Account</a></li>
+                        <li><a href="{{ url_for('get_staff') }}">All Staff</a></li>
+                      {% endif %}
+                      <li><a href="{{ url_for('logout') }}">Log Out</a></li>
                   {% else %}
                     <li><a href="{{ url_for('login') }}">Login</a></li>
                   {% endif %}
-          </ul>
-          
-  </header>
+                </ul>
+              </div>
+            </nav>
+            <!-- Side Navigation bar -->
+            <ul class="sidenav" id="mobile-demo">
+              <li class="center-align light-blue-text text-darken 4">Task Manager</h4></li>
+              {% if session.user %}
+                    <li><a href="{{ url_for('get_jobs') }}">Worklist</a></li>
+                    <li><a href="{{ url_for('list_staff') }}">List of Colleagues</a></li>
+                    <li><a href="{{ url_for('add_job') }}">New Job</a></li>
+                    {% if session.user|lower == "sysadmin"|lower %}
+                    <li><a href="{{ url_for('get_job_type') }}">Manage Job Types</a></li>
+                    <li><a href="{{ url_for('get_job_status') }}">Manage Job Status</a></li>
+                    {% endif %}
+                      {% if session.user|lower == "sysadmin"|lower %}
+                        <li><a href="{{ url_for('create_account') }}">Create Staff Account</a></li>
+                        <li><a href="{{ url_for('get_staff') }}">All Staff</a></li>
+                      {% endif %}
+                      <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+                    {% else %}
+                      <li><a href="{{ url_for('login') }}">Login</a></li>
+                    {% endif %}
+            </ul>
+            
+    </header>
+  <section>
+    <!-- flash messages -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="row flashes">
+                    <h4 class="light-blue lighten-4 center-align">{{ message }}</h4>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</section>
 
     
     <main class="container">

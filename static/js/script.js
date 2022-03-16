@@ -1,7 +1,3 @@
- // jQuery for Materialize sidenav-trigger
- //$(document).ready(function () {
-  //$(".sidenav").sidenav({edge: "right"});
-//});
 
 /*
     JavaScript for Materialize NavBar 

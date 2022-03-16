@@ -10,8 +10,8 @@ body {
 }
 
 
-.flash-message {
-	color: blue;
+.flash h4 {
+    line-height: 2;
 }
 
 

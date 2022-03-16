@@ -18,6 +18,26 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 
 
+import os
+from flask import (
+    Flask, flash, render_template,
+    redirect, request, session, url_for)
+from flask_pymongo import PyMongo
+from bson.objectid import ObjectId
+from werkzeug.security import generate_password_hash, check_password_hash
+if os.path.exists("env.py"):
+    import env
+
+
+app = Flask(__name__)
+
+app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
+app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
+app.secret_key = os.environ.get("SECRET_KEY")
+
+mongo = PyMongo(app)
+
+
 @app.route("/")
 @app.route("/home")
 def home():
@@ -120,7 +140,7 @@ def login():
                 flash("Welcome to the PLS Worklist System, {}".format(
                         request.form.get("username")))
                 return redirect(url_for(
-                        "home", username=session["user"]))
+                        "profile", username=session["user"]))
             else:
                 # Invalid password
                 flash("Username and/or Password are Incorrect!")
@@ -159,7 +179,7 @@ def profile(username):
     username = mongo.db.staff.find_one(
         {"username": session["user"]})["username"]
     if session["user"]:
-        return render_template("index.html", username=username)
+        return render_template("profile.html", username=username)
 
     return redirect(url_for("login"))
 
@@ -202,39 +222,31 @@ def add_job():
 
 @app.route("/edit_job/<job_id>", methods=["GET", "POST"])
 def edit_job(job_id):
-    """ docstring placeholder """
     if ("user" not in session):
         return redirect(url_for("login"))
 
-    job = mongo.db.jobs.find_one({"_id": ObjectId(job_id)})
+        job = mongo.db.jobs.find_one({"_id": ObjectId(job_id)})
 
     if request.method == "POST":
         job_priority = "on" if request.form.get("job_priority") else "off"
-
-        # will contain the values of the hidden inputs
-        job_type_name_value = request.form.get("job_type_name")
-        job_type_status_value = request.form.get("job_status_name")
-
         job_edit = {
             "job_type_name": request.form.get("job_type_name"),
             "job_name": request.form.get("job_name"),
             "job_description": request.form.get("job_description"),
             "job_priority": job_priority,
+            "job_created": request.form.get("job_created"),
             "job_due_date": request.form.get("job_due_date"),
             "username": request.form.get("username"),
             "job_status_name": request.form.get("job_status_name"),
-            "job_comments": request.form.get("job_comments"),
-            "job_created": request.form.get("job_created"),
-            "created_by": request.form.get("created_by")
+            "job_comments": request.form.get("job_comments")
         }
-
         mongo.db.jobs.replace_one({"_id": ObjectId(job_id)}, job_edit)
         flash("Job Successfully Updated")
 
+    
 
-    job_type = mongo.db.job_type.find().sort("job_type_name", 1)
-    job_status = mongo.db.job_status.find().sort("job_status_name", 1)
-    return render_template("edit_job.html", job_type=job_type, job_status=job_status, job=job )
+    
+    return render_template("edit_job.html", job=job)
 
     
 @app.route("/delete_job/<job_id>")
