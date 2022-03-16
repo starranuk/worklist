@@ -12,28 +12,28 @@
         <i class="material-icons prefix">account_circle</i>
         <input id="username" name="username"  value="{{ account.username }}" type="text" minlength="6" 
         maxlength="12" pattern="^[a-zA-Z0-9]{6,12}$" class="validate" readonly>
-        <label for="username">Username</label>
+        <label for="username">Username: </label>
     </div>
 </div>
 <div class="row">
     <div class="input-field col s6">
         <i class="material-icons prefix">recent_actors</i>
         <input id="first_name" name="first_name" value="{{ account.first_name }}" type="text" class="validate" readonly>
-        <label for="role">First Name</label>
+        <label for="role">First Name: </label>
       </div>
 </div>
 <div class="row">
     <div class="input-field col s6">
         <i class="material-icons prefix">recent_actors</i>
         <input id="surname" name="surname" value="{{ account.surname }}" type="text" class="validate" readonly>
-        <label for="role">Surname</label>
+        <label for="role">Surname: </label>
       </div>
 </div>
 <div class="row">
     <div class="input-field col s6">
         <i class="material-icons prefix">recent_actors</i>
         <input id="role" name="role" value="{{ account.role }}" type="text" class="validate" readonly>
-        <label for="role">Role</label>
+        <label for="role">Role: </label>
       </div>
 </div>
 <!-- Set the completion Date -->
@@ -41,9 +41,12 @@
     <div class="input-field col s12">
     <i class="material-icons prefix">date_range</i>
     <input id="account_created" name="account_created" value="{{ account.account_created }}" type="text"  readonly>
-    <label for="account_created">Date Account Created</label>
+    <label for="account_created">Date Account Created: </label>
     </div>
     <!-- Create Account Button-->
+<div class="row">
+    <a href="{{ url_for('list_staff') }}" class="btn-large blue">All Staff Page</a>
+</div>
 
 </div>
 </div>

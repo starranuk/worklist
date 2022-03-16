@@ -9,6 +9,10 @@ body {
     margin-right: auto;
 }
 
+#title {
+	font-size: 30px;
+}
+
 
 .flash h4 {
     line-height: 2;
@@ -21,6 +25,10 @@ body {
 
 strong {
 	color:black;
+}
+
+.btn-large {
+	margin: 5px;
 }
 
 .btn-small {
@@ -52,6 +60,10 @@ strong {
 			display: inline-block;
 			padding: 0px;
 			vertical-align: middle;
+		}
+
+		#title {
+			font-size: 20px;
 		}
 		
 
