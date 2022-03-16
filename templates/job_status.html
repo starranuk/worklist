@@ -4,7 +4,7 @@
 <h3 class="center-align">Manage Job Status</h3>
 <div class="row">
   <div class="col s12 center-align">
-    <a href="{{ url_for('add_job_status') }}" class="waves-effect waves-light btn-large">
+    <a href="{{ url_for('add_job_status') }}" class="waves-effect waves-light green btn-large">
       <i class="material-icons left">send</i>Add Job Status </a>
   </div>
 </div>
@@ -14,7 +14,7 @@
         <span class="card-title">{{ job_status.job_status_name }}</span>
       </div>
       <div class="card-action">
-        <a href="{{ url_for('delete_job_status', job_status_id=job_status._id) }}" class="btn light-blue lighten-1">Delete</a>
+        <a href="{{ url_for('delete_job_status', job_status_id=job_status._id) }}" class="btn red lighten-1">Delete</a>
       </div>
     </div>
   </div> {% endfor %} </div>

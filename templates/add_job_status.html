@@ -1,4 +1,6 @@
-{% extends "base.html" %} {% block content %} <h3 class="center-align">Add New Job Status</h3>
+{% extends "base.html" %}
+{% block content %} 
+<h3 class="center-align">Add New Job Status</h3>
 <div class="row card-panel blue lighten-5">
   <form class="col s12" method="POST" action="{{ url_for('add_job_status') }}">
     <!-- Add New Job Status Name -->
@@ -17,5 +19,6 @@
       <i class="material-icons left">send</i>Add Status Type </button>
   </div>
 </div>
-</form>
-</div> {% endblock %}
+  </form>
+</div> 
+{% endblock %}
