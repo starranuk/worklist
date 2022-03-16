@@ -21,12 +21,14 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/home")
 def home():
+    # Landing/Home Page
     jobs = list(mongo.db.jobs.find())
     return render_template("index.html")
 
 
 @app.route("/get_jobs")
 def get_jobs():
+                # Checks if user is logged in and opens Worklist
     if ("user" not in session):
         return redirect(url_for("login"))
     jobs = list(mongo.db.jobs.find())
@@ -41,6 +43,13 @@ def get_staff():
 
 @app.route("/list_staff")
 def list_staff():
+    # Any view that requires user login should peform a login check at the very
+    # beginning.
+    # Also checks that the logged in user is the "sysadmin".
+    # Credit to Brian Macharia my course Mentor.
+    # This lists staff that can be edited only by sysadmin account.
+    if ("user" not in session):
+        return redirect(url_for("login"))
     staff = list(mongo.db.staff.find())
     return render_template("list_staff.html", staff=staff)
 
@@ -83,7 +92,8 @@ def create_account():
 
 @app.route("/edit_account/<account_id>", methods=["GET", "POST"])
 def edit_account(account_id):
-            # Checks if user is signed in and is sysadmin
+                # Checks if user is signed in and is sysadmin
+                # Only sysadmin can edit a user account
     if ("user" not in session) or (session["user"].lower() != "sysadmin"):
         return redirect(url_for("login"))
 
@@ -114,7 +124,7 @@ def login():
         if existing_user:
             # Check password matches the one stored in MongoDB
             if check_password_hash(
-                    existing_user["password"], request.form.get("password")):
+                 existing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("username").lower()
                 flash("Welcome to the PLS Worklist System, {}".format(
                         request.form.get("username")))
@@ -129,7 +139,8 @@ def login():
             # Username doesn't exist
             flash("Username and/or Password are Incorrect!")
             return redirect(url_for("login"))
-            return render_template("login.html")
+
+    return render_template("login.html")
 
 
 @app.route("/staff_profile/<account_id>", methods=["GET", "POST"])
@@ -151,15 +162,12 @@ def staff_profile(account_id):
     return render_template("staff_profile.html", account=account)
 
 
-# User Profile
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
-                # Checks if user is signed in
-                # Retrieve the session users ursername from MongoDB
-    if ("user" not in session):
-        return redirect(url_for("login"))
-        username = mongo.db.staff.find_one(
-            {"username": session["user"]})["username"]
+    # Welcomes the user when they login
+    # Retrieve the session users ursername from MongoDB
+    username = mongo.db.staff.find_one(
+        {"username": session["user"]})["username"]
     if session["user"]:
         return render_template("profile.html", username=username)
 
@@ -176,7 +184,8 @@ def logout():
 
 @app.route("/add_job", methods=["GET", "POST"])
 def add_job():
-            # Checks if user is signed in
+                # Checks if user is signed in
+                # Page to create a new job
     if ("user" not in session):
         return redirect(url_for("login"))
 
@@ -206,7 +215,8 @@ def add_job():
 
 @app.route("/edit_job/<job_id>", methods=["GET", "POST"])
 def edit_job(job_id):
-                # Checks if user is signed in
+                # Checks if user is signed in and is sysadmin
+                # A user can only edit a job that is allocated to them
     if ("user" not in session):
         return redirect(url_for("login"))
 
@@ -234,9 +244,10 @@ def edit_job(job_id):
 @app.route("/delete_job/<job_id>")
 def delete_job(job_id):
                 # Checks if user is signed in and is sysadmin
-    if ("user" not in session) or (session["user"].lower() != "sysadmin"):
+                # A user can only de a job that is allocated to them
+                # Sysadmin account can edit any job
+    if ("user" not in session):
         return redirect(url_for("login"))
-
     mongo.db.jobs.delete_one({"_id": ObjectId(job_id)})
     flash("Job Deleted!")
     return redirect(url_for("get_jobs"))
@@ -245,17 +256,18 @@ def delete_job(job_id):
 @app.route("/get_job_type")
 def get_job_type():
                 # Checks if user is signed in and is sysadmin
+                # Provides list of Job Types
     if ("user" not in session) or (session["user"].lower() != "sysadmin"):
         return redirect(url_for("login"))
-
     job_type = list(mongo.db.job_type.find().sort("job_type_name", 1))
     return render_template("job_type.html", job_type=job_type)
 
 
 @app.route("/add_job_type", methods=["GET", "POST"])
 def add_job_type():
-    # Checks if user is signed in and is sysadmin
-    if (session["user"].lower() != "sysadmin"):
+                # Checks if user is signed in and is sysadmin
+                # Here sysadmin can add Job Types
+    if ("user" not in session) or (session["user"].lower() != "sysadmin"):
         return redirect(url_for("login"))
 
     if request.method == "POST":
@@ -271,10 +283,10 @@ def add_job_type():
 
 @app.route("/delete_job_type/<job_types_id>")
 def delete_job_type(job_types_id):
-    # Checks if user is signed in and is sysadmin
-    if (session["user"].lower() != "sysadmin"):
+                # Checks if user is signed in and is sysadmin
+                # Here sysadmin can delet Job Types
+    if ("user" not in session) or (session["user"].lower() != "sysadmin"):
         return redirect(url_for("login"))
-
     mongo.db.job_type.delete_one({"_id": ObjectId(job_types_id)})
     flash("Job Type Successfully Deleted")
     return redirect(url_for("get_job_type"))
@@ -282,17 +294,18 @@ def delete_job_type(job_types_id):
 
 @app.route("/get_job_status")
 def get_job_status():
-    # Checks if user is signed in and is sysadmin
-    if (session["user"].lower() != "sysadmin"):
+                # Checks if user is signed in and is sysadmin
+                # Provides list of Job Status's
+    if ("user" not in session) or (session["user"].lower() != "sysadmin"):
         return redirect(url_for("login"))
-
     job_status = list(mongo.db.job_status.find().sort("job_status_name", 1))
     return render_template("job_status.html", job_status=job_status)
 
 
 @app.route("/add_job_status", methods=["GET", "POST"])
 def add_job_status():
-    # Checks if user is signed in and is sysadmin
+                # Checks if user is signed in and is sysadmin
+                # Here sysadmin can add a Job Status
     if (session["user"].lower() != "sysadmin"):
         return redirect(url_for("login"))
 
@@ -310,9 +323,9 @@ def add_job_status():
 @app.route("/delete_job_status/<job_status_id>")
 def delete_job_status(job_status_id):
                 # Checks if user is signed in and is sysadmin
+                # Here sysadmin can add a Job Status
     if (session["user"].lower() != "sysadmin"):
         return redirect(url_for("login"))
-
     mongo.db.job_status.delete_one({"_id": ObjectId(job_status_id)})
     flash("Job Status Successfully Deleted")
     return redirect(url_for("get_job_status"))

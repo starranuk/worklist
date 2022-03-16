@@ -1,1 +1,46 @@
+body {
+	font-family: "Arial", sans-serif;
+	margin: 0px;
+	background-color: #f8f9fa;
+	max-width: 2000px;
+    margin-left: auto;
+    margin-right: auto;
+}
 
+#title {
+	font-size: 30px;
+}
+
+.flash h4 {
+    line-height: 2;
+}
+
+.card-title {
+	color:blue;
+}
+
+strong {
+	color:black;
+}
+
+	/*iPhone 5/SE*/
+@media screen and (max-width: 414px) {
+	
+		#title {
+			font-size: 20px;
+		}
+
+		.btn-large {
+			font-size: 10px;
+			text-align: center;
+			margin: 4px 2px;
+			height: 40px;
+			width: 80px;
+			display: inline-block;
+			padding: 0px;
+			vertical-align: middle;
+		}
+		
+
+	}	
+	
