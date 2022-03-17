@@ -23,11 +23,26 @@ strong {
 	color:black;
 }
 
+@media screen and (max-width: 1280px) {
+
+	#title {
+		font-size: 15px;
+	}
+
+	#bth {
+		font-size: 30px;
+	}
+
+
 	/*iPhone 5/SE*/
 @media screen and (max-width: 414px) {
 	
 		#title {
-			font-size: 20px;
+			font-size: 15px;
+		}
+
+		#bth {
+			font-size: 30px;
 		}
 
 		.btn-large {

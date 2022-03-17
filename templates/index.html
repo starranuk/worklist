@@ -1,11 +1,43 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h1 class="center-align">
-<a>Below the Hook Ltd</a>
+<h1 class="center-align"> 
+<a id="bth">Below the Hook Worklist System</a></h1>
+<p><h5><strong>Normal staff accounts that can:</strong></h5></p>
+<ul>
+<li>Create new jobs.</li>
+<li>Only edit the jobs they are allocated.</li>
+<li>Allocate jobs to colleagues.</li>
+<li>View all jobs for all users.</li>
+<li>View all staff profiles but only see the details of their own.</li>
+</ul>
+<p><h5><strong>The sysadmin account can:</strong></h5></p>
+<ul>
+<li>Create user accounts.</li>
+<li>Edit user accounts.</li>
+<li>Delete user accounts.</li>
+<li>Create and delete Job Types and Job Status’s.</li>
+<li>Create and edit all jobs in the Worklist</li>
+</ul>
+<p><h5><strong>Instructions for normal user</strong></h5></p>
+<ul>
+<li>Once logged in select the “Worklist” link.</li>
+<li>This displays the current open jobs.</li>
+<li>You will be able to view the details of all the current jobs but only edit those allocated to your username.</li>
+<li>To create a new job select the “New Job” .</li>
+<li>Enter the relevant information into the fields and set the priority/urgency of the task by selecting the switch at the bottom of the page.</li>
+<li>The call will automatically be allocated to your username if you don not add the username of a colleague.</li>
+<li>When editing you can update all fields apart from:
+<ul>
+<li>Job Creation Date</li>
+<li>Job Created By</li>
+<li>Job Type</li>
+</ul>
+</li>
+</ul>
    
         
-</h1> 
+
 
 {% endblock %}
 

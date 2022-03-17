@@ -46,7 +46,9 @@ This project is designed to provide a proof of concept for an Internal Call/Job 
 
 The code for the site sits on the **Github** repository hosting service and is deployed through **Heroku**, a cloud platform that allows developers to deploy apps in the cloud. Heroku also links to the **MongoDB** Non relational database, a non SQL document-oriented database that holds the data in collections.
 **Mongo DB System Data Model**
+
 ![Mongo DB System Data Model](https://starranuk.github.io/dice-game/assets/readme_worklist/MongoDB_data_model.png)
+
 
 
 **User Instructions**
@@ -65,9 +67,20 @@ There are two types user accounts:
  - Create and delete Job Types and Job Status's.
  - Create and edit all jobs in the Worklist
 
- **Design**
+**Instructions for normal user**
 
-The design
+ - Once logged in select the "Worklist" link.
+ - This displays the current open jobs.
+ - You will be able to view the details of all the current jobs but only edit those allocated to your username.
+ - To create a new job select the "New Job" .
+ - Enter the relevant information into the fields and set the priority/urgency of the task by selecting the switch at the bottom of the page.
+ - The call will automatically be allocated to your username if you don not add the username of a colleague.
+ - When editing you can update all fields apart from:
+	 - Job Creation Date
+	 - Job Created By
+	 - Job Type
+
+ **Design**
 
 **Colour list:**
 Background #f8f9fa
@@ -142,7 +155,12 @@ This is the page displayed with the sysadmin account logged in and looking at th
 
 ## Testing
 
-**Navigaation**
+ - Testing uncovered issues with the Job Status dropdown on the Job Edit
+   page deleting the selection from the database. Even with support from
+   my Mentor and Student Support I was not able to resolve this in time.
+   My temporary work around is that they can be updated manually.
+
+**Navigation**
 
  - All links have been tested.
  
@@ -150,7 +168,6 @@ This is the page displayed with the sysadmin account logged in and looking at th
 **Responsiveness**
 
 The responsive ranges targeted were:
-
  - For Desktops 
  - Mobile phones with screen max-width: 414px
  
@@ -169,7 +186,7 @@ Browsers used for testing were:
  - Amazon Silk
 
 **Performance Testing**
-Performance tested against Google Lighthouse Developer Tools which were very useful but only seemed to see the Login Page even alternative pages were open for the report to be run against.
+Performance tested against Google Lighthouse Developer Tools which were very useful but only seemed to see the Login Page even when alternative pages were open for the report to be run against.
 
 ## Future Features
 
@@ -220,8 +237,8 @@ Performance tested against Google Lighthouse Developer Tools which were very use
 
 #### Code Validation
     
--   Python code checked and corrected using PEP8 online checker.
-- http://pep8online.com/
+ -   Python code checked and corrected using PEP8 online checker.
+ - http://pep8online.com/
     
 ## Deployment
 
@@ -230,45 +247,51 @@ Performance tested against Google Lighthouse Developer Tools which were very use
 
  Follow this link to the current Worklist Repository (https://github.com/starranuk/worklist)
 
-1.  Follow this link to my  [Repository on Github] and open it.
-2.  Click  `Clone or Download`.
-3.  In the Clone with HTTPs section, click the  `copy`  icon.
-4.  In your local IDE open Git Bash.
-5.  Change the current working directory to where you want the cloned directory to be made.
-6.  Type  `git clone`, and then paste the URL you copied earlier.
-7.  Press enter and your local clone will be ready.
+ - Follow the link above to the Worklist repository. 
+ - Select the "Code" button and select "Download Zip".
+ - Once downloaded extract and upload to your fresh GitHub repository.
+ - In your repository terminal  type: pip3 install Flask
+ - Create your variable folder in your repository type: touch env.py
+ - Type: touch .gitignore this will hold information on what not to copy upto GitHub, i.e. the variables folder.
+ - Open .gitignore and add env.py __pycache__/ - this stops these files from being copied upto GitHub.
+ - Go to MongoDB.com and open an account.
+ - Create a new Cluster (Database) and name it job_worklist
+ - Open the env.py file and add the following 
+ 
+os.environ.setdefault("IP", "0.0.0.0")
+os.environ.setdefault("PORT", "5000")
+os.environ.setdefault("SECRET_KEY", ">create this secret key yourself")
+os.environ.setdefault("MONGO_URI", "mongodb+srv://accountthatyoucreateforthecluster:OUDQSw0BP5oX2Xw3@clustername.extqj.mongodb.net/yourrepositoryname?retryWrites=true&w=majority")
+os.environ.setdefault("MONGO_DBNAME", "job_worklist")
+ 
+ - Within the database create the collections so that they match the database model illustrated below:
 
-#### [](https://github.com/taikatta/Milestone3-Konyvkucko/blob/master/README.md#deploy-to-heroku)DEPLOY TO HEROKU
-
-1.  On Heroku create an account and log in.
-2.  Click  `new`  and  `create new app`.
-3.  Choose a unique name for your app, select region and click on  `Create App`
-4.  Under the  `Settings`  click  `Reveal Config Vars`  and set IP to 0.0.0.0 and the PORT to 5000
-5.  Go to the CLI and type  `$ sudo snap install --classic heroku`
-6.  Type  `$ heroku login`  command into the terminal
-7.  Create  `requirements.txt`  ($ sudo pip3 freeze --local > requirements.txt)
-8.  Create a  `Procfile`  (`$ echo web: python app.py > Procfile`)
-9.  Go back to Heroku, under  `Deploy`  find  `Existing Git repository`  and copy the command:`$ heroku git:remote -a <app_name>`  Paste this into the terminal.
-10.  (If repository was not created already, type:
-11.  `$ cd my-project/`
-12.  `$ git init`
-13.  `$ heroku git:remote -a <app_name>`)
-14.  Type  `$ heroku ps:scale web=1`  into the terminal.
-15.  Go back to Heroku, and at  `Settings`  copy  `https://<app_name>.herokuapp.com/`
-16.  In the terminal type  `git remote add http://<app_name>.herokuapp.com/`
-17.  Type  `git push -u heroku master`
-18.  In the app dashboard, under  `Settings`  click on  `Reveal Config Vars`
-19.  Set "MONGO_URI" and "MONGO_DBNAME" and "SECRET_KEY"
-20.  Once the build is complete, go back to Heroku and click on  `Open App`
+ ![Mongo DB System Data Model](https://starranuk.github.io/dice-game/assets/readme_worklist/MongoDB_data_model.png)
 
 
+ - Go to Heroku.com and create an account.
+ - Create your App and use the Automatic Deployment link to your GitHub repository.
+ - Once your GitHub profile is displayed add your repository name and
+   click search.
+ - Once it finds your repository, click to connect to this app.
+ - Select the "Settings" tab for your app, and then click on "Reveal Config Vars"
+ - As HeroKu won't be able to see the variables in the env.py file this is where you add them:
+ "IP", "0.0.0.0"
+"PORT", "5000"
+"SECRET_KEY", ">create this secret key yourself"
+"MONGO_URI", "mongodb+srv://accountthatyoucreateforthecluster:OUDQSw0BP5oX2Xw3@clustername.extqj.mongodb.net/yourrepositoryname?retryWrites=true&w=majority"
+"MONGO_DBNAME", "job_worklist"
+
+ - Run a commit to your repository and then return to HeroKu.
+ - Heroku should now be able to see the files in your repository so select 'Enable Automatic Deployment'
 
 ## Credits
 
 **Acknowledgements**
 The Inspiration for this project was based on the Code Institute  "Data Centric Design mini-project" by Tim Nelson.
  - Brian Macharia- Mentor support, for the advice, tips and guidance.
- - Nicola Tarran for site testing and proof reading.
+ - Student Support - Sean and Rebecca
+ 
   
 
 
@@ -281,5 +304,6 @@ The Inspiration for this project was based on the Code Institute  "Data Centric 
 
 
 > Written with [StackEdit](https://stackedit.io/).
+
 
 
