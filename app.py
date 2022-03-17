@@ -1,3 +1,7 @@
+# The Inspiration for this project was based on 
+# the Code Institute  "Data Centric Design mini-project" 
+# by Tim Nelson.
+
 import os
 from flask import (
     Flask, flash, render_template,
